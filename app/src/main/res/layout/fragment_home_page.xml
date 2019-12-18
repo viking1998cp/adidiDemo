@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/colorGray1"
+                    android:padding="@dimen/padding10dp"
+                    android:layout_marginTop="@dimen/linearMarginHomePage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_marginTop="@dimen/marginBiggest"
+                        android:text="@string/chooseService"
+                        style="@style/textTitleHomePage"
+                      />
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/fontNormal"
+                        android:textColor="@color/colorGray"
+                        android:text="@string/cheapAndFast"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginTop="@dimen/margin8dp"
+                        android:id="@+id/recycleService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_marginTop="@dimen/margin8dp"
+                        android:text="@string/chooseVoucher"
+                        style="@style/textTitleHomePage"/>
+                    <LinearLayout
+                        android:padding="@dimen/padding10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp">
+                        <me.relex.circleindicator.CircleIndicator
+
+                            android:id="@+id/indicatorVoucher"
+                            android:layout_alignParentRight="true"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"
+                            app:ci_drawable="@drawable/select_indicator"
+                            app:ci_drawable_unselected="@drawable/un_select_indicator"/>
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/viewPagerVoucher"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_horizontal"
+
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/marginBiggest"
+                        android:text="@string/chooseService"
+                        style="@style/textTitleHomePage"
+                        />
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/imvTitleHomeHeight"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/city_orange_2"
+                    />
+                    <ImageView
+
+                        android:padding="@dimen/padding10dp"
+                        android:layout_marginTop="@dimen/marginBiggest"
+                        android:layout_marginLeft="@dimen/padding10dp"
+                        android:layout_marginRight="@dimen/padding10dp"
+                        android:src="@drawable/title_home_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/imvTitleHomeHeight"
+                        android:background="@drawable/background_imv_round"
+
+                        />
+
+
+            </androidx.cardview.widget.CardView>
+        </androidx.core.widget.NestedScrollView>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/ToolBarTheme.ToolBarStyle"
+            android:theme="@style/ToolBarTheme.ToolBarStyle"
+
+
+            />
+    </FrameLayout>
+
+</layout>

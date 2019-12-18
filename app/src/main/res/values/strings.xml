@@ -1,0 +1,33 @@
+<!DOCTYPE resources [<!ENTITY nbsp "&#160;"><!-- non-breaking space, U+00A0 -->]>
+<resources>
+    <string name="app_name">adidiDemo</string>
+    <string name="titleMain">ADIDI</string>
+    <string name="login">Đăng nhập</string>
+    <string name="createAccount">Tạo tài khoản</string>
+    <string name="register">Đăng kí</string>
+    <string name="lastNameHint">Họ*</string>
+    <string name="firstNameHint">Tên*</string>
+    <string name="areaCode">+84</string>
+    <string name="phoneHint">Di động*</string>
+    <string name="emailHint">Email*</string>
+    <string name="passHint">Mật khẩu</string>
+    <string name="introductionCodeHint">Mã giới thiệu</string>
+    <string name="forgetPassWord"> <u> Quên mật khẩu </u></string>
+    <string name="givenOtp">Nhận mã OTP</string>
+    <string name="helperOTP">ADiDi sẽ gửi một mã kích hoạt qua số điện thoại bạn đã nhập</string>
+    <string name="chooseService">HÃY LỰA CHỌN DỊCH VỤ PHÙ HỢP</string>
+    <string name="cheapAndFast"><![CDATA[Để tiết kiệm chi phí & nhanh nhất]]></string>
+    <string name="chooseVoucher">ƯU ĐÃI ADIDI DÀNH CHO BẠN</string>
+    <string name="readMore">Xem thêm</string>
+    //Data Voucher
+    <string name="voucherName1"><p> VỆ SINH MÁY LẠNH - PHÁ ĐẢO CƠN NÓNG NGAY NÀO </p></string>
+    <string name="voucherDetail1"><p>Việc không vệ sinh lưới lọc thường xuyên khiến lưới lọc bị bám đầy bụi bẩn, điều hòa phải hút gió vào và đẩy gió ra ít hơn nhưng công suất tiêu thụ lại cao hơn lúc bình thường.</p>
+<p>Như vậy, lượng&nbsp;<strong>điện năng tiêu thụ cao hơn</strong>, gây tiếng<strong>&nbsp;ồn</strong>&nbsp;nhiều hơn nhưng&nbsp;<strong>không mang lại hiệu quả làm lạnh tốt.</strong>&nbsp;</p>
+<p>Để khắc phục tình trạng trên bạn nên vệ sinh lưới lọc thường xuyên&nbsp;khoảng 1 tháng một lần (tùy vào mức độ sử dụng). Đối với những gia đình miền Bắc, cần tổng vệ sinh máy trước khi bước vào mùa hạ để đảm bảo điều hòa đạt được hiệu quả làm mát tối ưu.</p>
+<p><strong>Tải App Adidi -&gt; Vào mục lắp đặt -&gt; Nhập thông tin địa chỉ cần vệ sinh -&gt; chọn dịch vụ vệ sinh máy lạnh-&gt;ADIDI PHỤC VỤ TRONG VÒNG 30s.</strong></p></string>
+    <string name="title_main">Trang chủ</string>
+    <string name="title_list_order">Đơn hàng</string>
+    <string name="title_notification">Thông báo</string>
+    <string name="title_function">Chức năng</string>
+    <string name="logOut">Đăng xuất</string>
+</resources>

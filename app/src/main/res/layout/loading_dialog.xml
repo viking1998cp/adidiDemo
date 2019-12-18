@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.github.jorgecastillo.FillableLoader
+            android:id="@+id/fillableLoader"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+
+            app:fl_originalWidth="400"
+            app:fl_originalHeight="500"
+            app:fl_fillColor="@color/colorOrangeYellowDark"
+            app:fl_strokeColor="@color/colorWhite"
+            app:fl_strokeWidth="1dp"
+            app:fl_fillDuration="@integer/fillDuration"
+            app:fl_fillPercentage="@integer/fillPercentage"
+            app:fl_strokeDrawingDuration="@integer/strokeDrawingDuration"
+            app:fl_clippingTransform="waves"
+            android:layout_gravity="center"
+
+            />
+
+    </LinearLayout>
+</layout>

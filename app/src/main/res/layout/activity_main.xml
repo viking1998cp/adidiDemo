@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/background_login"
+        android:padding="@dimen/paddingMain"
+        tools:context=".MainActivity">
+        <TextView
+            android:drawableLeft="@drawable/logo"
+            android:gravity="center"
+            android:text="@string/titleMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/bigFont"
+            android:textStyle="bold"
+            android:textColor="@color/colorOrange"
+            />
+        <LinearLayout
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/createAccount"
+                android:textColor="@color/colorWhite"
+                android:textAllCaps="false"
+                android:background="@drawable/background_button_no_boder"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginBottom="@dimen/padding10dp"
+                />
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textColor="@color/colorOrange"
+                android:background="@drawable/background_button_boder_orange"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddingMain" >40dp</dimen>
+    <dimen name="bigFont">60dp</dimen>
+    <dimen name="padding10dp">10dp</dimen>
+    <dimen name="margin8dp">8dp</dimen>
+    <dimen name="imvIcon">36dp</dimen>
+    <dimen name="padding5dp">5dp</dimen>
+    <dimen name="margin16dp">16dp</dimen>
+    <dimen name="fontNormal">14sp</dimen>
+    <dimen name="fontMediumSmall">16sp</dimen>
+    <dimen name="fontMedium">18sp</dimen>
+    <dimen name="margin10dp">10dp</dimen>
+    <dimen name="widthTabLogin">200dp</dimen>
+    <dimen name="margin24dp">24dp</dimen>
+    <dimen name="logoLoadingWith">400dp</dimen>
+    <dimen name="logoLoadingHeight">180dp</dimen>
+    <dimen name="app_bar_height">150dp</dimen>
+    <dimen name="marginBiggest">80dp</dimen>
+    <dimen name="imvTitleHomeHeight">150dp</dimen>
+    <dimen name="cardviewWidth">140dp</dimen>
+    <dimen name="cardviewHeight">160dp</dimen>
+    <dimen name="cardview_shadow">10dp</dimen>
+    <dimen name="imvService">50dp</dimen>
+    <dimen name="linearMarginHomePage">150dp</dimen>
+    <dimen name="padding20dp">20dp</dimen>
+    <dimen name="radiusCardView">10dp</dimen>
+    <dimen name="cardviewHeightVoucher">300dp</dimen>
+    <dimen name="cardview_shadowVoucher">5dp</dimen>
+    <dimen name="lineHeightMedium">20dp</dimen>
+    <dimen name="fontSmall">10sp</dimen>
+</resources>

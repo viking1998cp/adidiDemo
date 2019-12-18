@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+        <androidx.cardview.widget.CardView
+            style="@style/cardViewHomePage"
+            app:cardElevation="@dimen/cardview_shadow"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/radiusCardView"
+            >
+            <LinearLayout
+                android:weightSum="10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6">
+                    <ImageView
+                        android:layout_marginTop="@dimen/margin8dp"
+                        android:id="@+id/imvService"
+                        android:layout_width="@dimen/imvService"
+                        android:layout_height="@dimen/imvService"
+                        android:src="@drawable/ic_install_sanitary"/>
+                </LinearLayout>
+
+                <TextView
+
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:layout_margin="@dimen/margin8dp"
+                    android:gravity="center"
+                    android:id="@+id/nameService"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+</layout>
