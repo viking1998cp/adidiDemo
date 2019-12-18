@@ -17,6 +17,10 @@ import manhthang.adididemo.Fragment.Fragment_HomePage;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityHomeMainBinding;
 
+/**
+ * Created by manh thắng 98.
+ */
+
 public class HomeMainActivity extends AppCompatActivity {
     private int back =1;
     ActivityHomeMainBinding binding;

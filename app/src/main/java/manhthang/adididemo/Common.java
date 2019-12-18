@@ -20,6 +20,7 @@ public class Common {
         Toast.makeText(context,toast,Toast.LENGTH_SHORT).show();
     }
 
+    //Format 2 chữ trên 1 dòng
     public static String twoWordOneLine(String text){
         String[] texts = text.split(" ");
         String value ="";
@@ -39,6 +40,7 @@ public class Common {
         }
     }
 
+    //Đưa từ văn bản html về dạng thường
     public static Spanned stripHtml(String html) {
         if (!TextUtils.isEmpty(html)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -50,6 +52,7 @@ public class Common {
         return null;
     }
 
+    //Thay đổi màu statusbar
     public static void setStatusBar(int color, Activity activity){
 
         if (Build.VERSION.SDK_INT >= 21) {

@@ -27,7 +27,10 @@ import manhthang.adididemo.PathVectorImage;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.LoadingDialogBinding;
 
+
 public class LoadingDialog extends Dialog {
+
+    //Icon loading equasl logo adidi
     private LoadingDialogBinding binding;
 
     public LoadingDialog(Context context, int themeResId) {
@@ -46,6 +49,7 @@ public class LoadingDialog extends Dialog {
         Log.d("BBB", "onCreate: "+binding.getRoot().getRootView().getHeight());
 //        binding.fillableLoader.setOriginalDimensions(binding.getRoot().getWidth()/2,binding.getRoot().getHeight()/2);
         binding.fillableLoader.start();
+
         binding.fillableLoader.setOnStateChangeListener(new OnStateChangeListener() {
             @Override
             public void onStateChange(int state) {

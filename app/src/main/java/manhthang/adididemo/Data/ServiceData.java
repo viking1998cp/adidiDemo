@@ -7,6 +7,9 @@ import manhthang.adididemo.Object.ServiceObject;
 import manhthang.adididemo.R;
 
 public class ServiceData {
+
+    //Danh sách các dịch vụ
+
     public static ArrayList<ServiceObject> getDataService(){
         ArrayList<ServiceObject> serviceObjects = new ArrayList<>();
         //Giao hàng

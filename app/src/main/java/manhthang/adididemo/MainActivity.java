@@ -15,6 +15,10 @@ import manhthang.adididemo.Activity.RegisterActivity;
 import manhthang.adididemo.Dialog.LoadingDialog;
 import manhthang.adididemo.databinding.ActivityMainBinding;
 
+/**
+ * Created by manh thắng 98.
+ */
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     @Override

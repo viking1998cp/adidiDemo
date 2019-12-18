@@ -12,6 +12,10 @@ import manhthang.adididemo.Fragment.FragmentOTP;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityLoginBinding;
 
+/**
+ * Created by manh thắng 98.
+ */
+
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     @Override

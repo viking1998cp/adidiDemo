@@ -49,6 +49,8 @@ public class Fragment_HomePage extends Fragment {
         return binding.getRoot();
     }
 
+
+    //Scroll xuống thay màu toolbar và statusbar , em chưa custom cái toolbar
     private void setScrollChangeColorBar() {
         binding.scrollHomePage.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -75,6 +77,7 @@ public class Fragment_HomePage extends Fragment {
             }
         });
     }
+
 
     private void setUpVoucherView() {
         ArrayList<Voucher> vouchers = VoucherData.getVoucherData(binding.getRoot().getContext());

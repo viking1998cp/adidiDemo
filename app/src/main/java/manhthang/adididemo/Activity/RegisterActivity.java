@@ -9,6 +9,10 @@ import android.view.View;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityRegisterBinding;
 
+/**
+ * Created by manh thắng 98.
+ */
+
 public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
     @Override

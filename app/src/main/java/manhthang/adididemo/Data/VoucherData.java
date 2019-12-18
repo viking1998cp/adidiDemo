@@ -10,6 +10,8 @@ import manhthang.adididemo.R;
 
 public class VoucherData {
 
+    //Danh sách các khuyến mãi dành cho bạn
+
     public static ArrayList<Voucher> getVoucherData(Context context){
         ArrayList<Voucher> vouchers = new ArrayList<>();
 
