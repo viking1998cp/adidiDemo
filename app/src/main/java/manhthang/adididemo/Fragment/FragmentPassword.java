@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import manhthang.adididemo.Activity.HomeMainActivity;
 import manhthang.adididemo.Common;
 import manhthang.adididemo.Data.AccountData;
 import manhthang.adididemo.Dialog.LoadingDialog;
@@ -72,7 +73,7 @@ public class FragmentPassword extends Fragment {
             if (phone.equalsIgnoreCase(AccountData.USERNAME) &&
                     password.equalsIgnoreCase(AccountData.PASSWORD)) {
                 saveAccount(phone, password);
-                Intent intent = new Intent(getActivity(), Fragment_HomePage.class);
+                Intent intent = new Intent(getActivity(), HomeMainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
 
