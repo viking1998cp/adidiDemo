@@ -6,13 +6,10 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 
 import manhthang.adididemo.Activity.HomeMainActivity;
-import manhthang.adididemo.Fragment.Fragment_HomePage;
 import manhthang.adididemo.Activity.LoginActivity;
 import manhthang.adididemo.Activity.RegisterActivity;
-import manhthang.adididemo.Dialog.LoadingDialog;
 import manhthang.adididemo.databinding.ActivityMainBinding;
 
 /**
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkStatusLogin() {
-        boolean status = SharedPrefs.getInstance().get(Common.STATUSLOGIN, Boolean.class);
+        boolean status = SharedPrefs.getInstance().get(SharedPrefs.STATUSLOGIN, Boolean.class);
         if (status) {
             Intent intent = new Intent(MainActivity.this, HomeMainActivity.class);
             startActivity(intent);

@@ -29,4 +29,8 @@
     <dimen name="cardview_shadowVoucher">5dp</dimen>
     <dimen name="lineHeightMedium">20dp</dimen>
     <dimen name="fontSmall">10sp</dimen>
+    <dimen name="radiusMedium">5dp</dimen>
+    <dimen name="strokeSmaill">1dip</dimen>
+    <dimen name="radiusLarge">15dp</dimen>
+    <dimen name="sideIndicator">10dp</dimen>
 </resources>

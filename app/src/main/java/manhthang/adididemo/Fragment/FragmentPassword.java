@@ -78,15 +78,15 @@ public class FragmentPassword extends Fragment {
                 getActivity().finish();
 
             }else {
-                Common.ShowToast(getContext(),"Vui lòng kiểm tra tài khoản hoặc mật khẩu");
+                Common.ShowToast(getContext(),getActivity().getString(R.string.errorAccount));
             }
         }
     }
 
     private void saveAccount(String phone, String password) {
-        SharedPrefs.getInstance().put(Common.PHONENUMBER, binding.editPhone.getText().toString());
-        SharedPrefs.getInstance().put(Common.PASSWORD, binding.editPass.getText().toString());
-        SharedPrefs.getInstance().put(Common.STATUSLOGIN, true);
+        SharedPrefs.getInstance().put(SharedPrefs.PHONENUMBER, binding.editPhone.getText().toString());
+        SharedPrefs.getInstance().put(SharedPrefs.PASSWORD, binding.editPass.getText().toString());
+        SharedPrefs.getInstance().put(SharedPrefs.STATUSLOGIN, true);
     }
 
 }

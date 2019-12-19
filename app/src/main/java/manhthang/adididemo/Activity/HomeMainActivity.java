@@ -12,8 +12,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import manhthang.adididemo.Fragment.Fragment_Function;
-import manhthang.adididemo.Fragment.Fragment_HomePage;
+import manhthang.adididemo.Fragment.FragmentFunction;
+import manhthang.adididemo.Fragment.FragmentHomePage;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityHomeMainBinding;
 
@@ -29,7 +29,7 @@ public class HomeMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(HomeMainActivity.this,R.layout.activity_home_main);
 
-        loadFragment(new Fragment_HomePage());
+        loadFragment(new FragmentHomePage());
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
@@ -44,28 +44,28 @@ public class HomeMainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     if(back != 1){
                         back =1;
-                        fragment = new Fragment_HomePage();
+                        fragment = new FragmentHomePage();
                         loadFragment(fragment);
                     }
                     return true;
                 case R.id.navigation_listOrder:
                     if(back != 2){
                         back =2;
-                        fragment = new Fragment_HomePage();
+                        fragment = new FragmentHomePage();
                         loadFragment(fragment);
                     }
                     return true;
                 case R.id.navigation_notification:
                     if(back != 3){
                         back =3;
-                        fragment = new Fragment_HomePage();
+                        fragment = new FragmentHomePage();
                         loadFragment(fragment);
                     }
                     return true;
                 case R.id.navigation_function:
                     if(back != 3){
                         back =3;
-                        fragment = new Fragment_Function();
+                        fragment = new FragmentFunction();
                         loadFragment(fragment);
                     }
                     return true;

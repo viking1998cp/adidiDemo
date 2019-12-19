@@ -8,15 +8,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -25,13 +20,13 @@ import manhthang.adididemo.Adapter.VoucherAdapter;
 import manhthang.adididemo.Common;
 import manhthang.adididemo.Data.ServiceData;
 import manhthang.adididemo.Data.VoucherData;
-import manhthang.adididemo.Object.ServiceObject;
+import manhthang.adididemo.Object.Service;
 import manhthang.adididemo.Object.Voucher;
 import manhthang.adididemo.R;
 
 import manhthang.adididemo.databinding.FragmentHomePageBinding;
 
-public class Fragment_HomePage extends Fragment {
+public class FragmentHomePage extends Fragment {
     private FragmentHomePageBinding binding;
     private ItemServiceAdapter adapterService;
 
@@ -91,8 +86,8 @@ public class Fragment_HomePage extends Fragment {
     private void setUpServiceView() {
         binding.recycleService.setHasFixedSize(true);
         binding.recycleService.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 3));
-        ArrayList<ServiceObject> serviceObjects = ServiceData.getDataService();
-        adapterService = new ItemServiceAdapter( serviceObjects);
+        ArrayList<Service> services = ServiceData.getDataService();
+        adapterService = new ItemServiceAdapter(services);
 
         adapterService.setOnItemClickedListener(new ItemServiceAdapter.OnItemClickedListener() {
             @Override

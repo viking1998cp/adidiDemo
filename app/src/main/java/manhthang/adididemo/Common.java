@@ -12,33 +12,12 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 public class Common {
-    public final static String PHONENUMBER = "phonenumber";
-    public final static String PASSWORD = "password";
-    public final static String STATUSLOGIN = "statuslogin";
+
 
     public static void ShowToast(Context context, String toast){
         Toast.makeText(context,toast,Toast.LENGTH_SHORT).show();
     }
 
-    //Format 2 chữ trên 1 dòng
-    public static String twoWordOneLine(String text){
-        String[] texts = text.split(" ");
-        String value ="";
-        Log.d("BBB", "twoWordOneLine: "+texts.length);
-        if(texts.length<=2){
-            return text;
-        }else {
-            for(int i=0;i<texts.length;i++){
-                if(i%2!=0){
-                    texts[i] += "\n";
-                }
-                value += texts[i]+" ";
-            }
-            value.trim();
-
-            return value;
-        }
-    }
 
     //Đưa từ văn bản html về dạng thường
     public static Spanned stripHtml(String html) {

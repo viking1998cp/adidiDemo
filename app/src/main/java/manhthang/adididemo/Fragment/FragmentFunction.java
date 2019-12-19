@@ -17,7 +17,7 @@ import manhthang.adididemo.R;
 import manhthang.adididemo.SharedPrefs;
 import manhthang.adididemo.databinding.FragmentFunctionBinding;
 
-public class Fragment_Function extends Fragment {
+public class FragmentFunction extends Fragment {
     private FragmentFunctionBinding binding;
     @Nullable
     @Override
@@ -39,9 +39,9 @@ public class Fragment_Function extends Fragment {
     }
 
     private void logOut() {
-        SharedPrefs.getInstance().remove(Common.PHONENUMBER);
-        SharedPrefs.getInstance().remove(Common.PASSWORD);
-        SharedPrefs.getInstance().put(Common.STATUSLOGIN,false);
+        SharedPrefs.getInstance().remove(SharedPrefs.PHONENUMBER);
+        SharedPrefs.getInstance().remove(SharedPrefs.PASSWORD);
+        SharedPrefs.getInstance().put(SharedPrefs.STATUSLOGIN,false);
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
     }

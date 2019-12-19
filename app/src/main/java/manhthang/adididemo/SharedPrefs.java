@@ -9,6 +9,10 @@ public class SharedPrefs {
     private static SharedPrefs mInstance;
     private SharedPreferences mSharedPreferences;
 
+    public final static String PHONENUMBER = "phonenumber";
+    public final static String PASSWORD = "password";
+    public final static String STATUSLOGIN = "statuslogin";
+
 
     private SharedPrefs() {
         mSharedPreferences = AdidiApplication.getInstance().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -49,6 +53,7 @@ public class SharedPrefs {
             return (T) Long.valueOf(mSharedPreferences.getLong(key, 0));
         }
     }
+
     public void remove(String key) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.remove(key);

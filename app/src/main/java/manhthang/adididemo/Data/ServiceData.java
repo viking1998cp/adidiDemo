@@ -3,41 +3,41 @@ package manhthang.adididemo.Data;
 
 import java.util.ArrayList;
 
-import manhthang.adididemo.Object.ServiceObject;
+import manhthang.adididemo.Object.Service;
 import manhthang.adididemo.R;
 
 public class ServiceData {
 
     //Danh sách các dịch vụ
 
-    public static ArrayList<ServiceObject> getDataService(){
-        ArrayList<ServiceObject> serviceObjects = new ArrayList<>();
+    public static ArrayList<Service> getDataService(){
+        ArrayList<Service> services = new ArrayList<>();
         //Giao hàng
-        ServiceObject delivery = new ServiceObject();
+        Service delivery = new Service();
         delivery.setTitle("Giao hàng");
         delivery.setIdImv(R.drawable.ic_delivery);
-        serviceObjects.add(delivery);
+        services.add(delivery);
 
-        ServiceObject installationSanitary = new ServiceObject();
+        Service installationSanitary = new Service();
         installationSanitary.setTitle("Lắp đặt vệ sinh");
         installationSanitary.setIdImv(R.drawable.ic_install_sanitary);
-        serviceObjects.add(installationSanitary);
+        services.add(installationSanitary);
 
-        ServiceObject deliveryAndinstallation = new ServiceObject();
-        deliveryAndinstallation.setTitle("Giao hàng lắp đặt");
+        Service deliveryAndinstallation = new Service();
+        deliveryAndinstallation.setTitle("Giao hàng\n lắp đặt");
         deliveryAndinstallation.setIdImv(R.drawable.ic_install_delivery);
-        serviceObjects.add(deliveryAndinstallation);
+        services.add(deliveryAndinstallation);
 
-        ServiceObject guarantee = new ServiceObject();
-        guarantee.setTitle("Bảo hành sữa chữa");
+        Service guarantee = new Service();
+        guarantee.setTitle("Bảo hành\n sữa chữa");
         guarantee.setIdImv(R.drawable.ic_guarantee);
-        serviceObjects.add(guarantee);
+        services.add(guarantee);
 
-        ServiceObject rentHouse = new ServiceObject();
+        Service rentHouse = new Service();
         rentHouse.setTitle("Thuê kho");
         rentHouse.setIdImv(R.drawable.ic_renthouse);
-        serviceObjects.add(rentHouse);
+        services.add(rentHouse);
 
-        return serviceObjects;
+        return services;
     }
 }

@@ -1,7 +1,6 @@
 package manhthang.adididemo.Adapter;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import manhthang.adididemo.Common;
-import manhthang.adididemo.Object.ServiceObject;
+import manhthang.adididemo.Object.Service;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ItemServiceBinding;
 
@@ -21,9 +20,9 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
     private OnItemClickedListener onItemClickedListener;
 
-    private ArrayList<ServiceObject> arrayList;
+    private ArrayList<Service> arrayList;
 
-    public ItemServiceAdapter(ArrayList<ServiceObject> arrayList) {
+    public ItemServiceAdapter(ArrayList<Service> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -37,9 +36,9 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
     @Override
     public void onBindViewHolder(@NonNull ItemRowHolder holder, int position) {
 
-        ServiceObject service = arrayList.get(position);
+        Service service = arrayList.get(position);
         holder.binding.imvService.setImageResource(service.getIdImv());
-        holder.binding.nameService.setText(Common.twoWordOneLine(service.getTitle()));
+        holder.binding.nameService.setText(service.getTitle());
 
     }
 

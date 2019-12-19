@@ -19,6 +19,7 @@
     <string name="cheapAndFast"><![CDATA[Để tiết kiệm chi phí & nhanh nhất]]></string>
     <string name="chooseVoucher">ƯU ĐÃI ADIDI DÀNH CHO BẠN</string>
     <string name="readMore">Xem thêm</string>
+    <string name="errorAccount" >Vui lòng kiểm tra mật khẩu</string>
     //Data Voucher
     <string name="voucherName1"><p> VỆ SINH MÁY LẠNH - PHÁ ĐẢO CƠN NÓNG NGAY NÀO </p></string>
     <string name="voucherDetail1"><p>Việc không vệ sinh lưới lọc thường xuyên khiến lưới lọc bị bám đầy bụi bẩn, điều hòa phải hút gió vào và đẩy gió ra ít hơn nhưng công suất tiêu thụ lại cao hơn lúc bình thường.</p>

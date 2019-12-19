@@ -1,10 +1,10 @@
 package manhthang.adididemo.Object;
 
-public class ServiceObject {
+public class Service {
     private int idImv;
     private String title;
 
-    public ServiceObject() {
+    public Service() {
     }
 
     public int getIdImv() {
