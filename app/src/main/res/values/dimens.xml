@@ -32,5 +32,8 @@
     <dimen name="radiusMedium">5dp</dimen>
     <dimen name="strokeSmaill">1dip</dimen>
     <dimen name="radiusLarge">15dp</dimen>
-    <dimen name="sideIndicator">10dp</dimen>
+    <dimen name="radiusBiggest">40dp</dimen>
+    <dimen name="sideIndicator">4sp</dimen>
+    <dimen name="slideViewHeight">350dp</dimen>
+
 </resources>

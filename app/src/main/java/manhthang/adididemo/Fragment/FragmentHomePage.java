@@ -39,9 +39,19 @@ public class FragmentHomePage extends Fragment {
         ActionToolbar();
         setUpServiceView();
         setUpVoucherView();
+        setUpDiscoverView();
 
         setScrollChangeColorBar();
         return binding.getRoot();
+    }
+
+    private void setUpDiscoverView() {
+        ArrayList<Voucher> vouchers = VoucherData.getVoucherData(binding.getRoot().getContext());
+        VoucherAdapter voucherAdapter = new VoucherAdapter(vouchers);
+
+        binding.viewPagerDiscover.setAdapter(voucherAdapter);
+
+        binding.indicatorDiscover.setViewPager(binding.viewPagerDiscover);
     }
 
 

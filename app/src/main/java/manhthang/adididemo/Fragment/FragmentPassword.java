@@ -16,6 +16,7 @@ import manhthang.adididemo.Activity.HomeMainActivity;
 import manhthang.adididemo.Common;
 import manhthang.adididemo.Data.AccountData;
 import manhthang.adididemo.Dialog.LoadingDialog;
+import manhthang.adididemo.Object.User;
 import manhthang.adididemo.R;
 import manhthang.adididemo.SharedPrefs;
 import manhthang.adididemo.databinding.FragmentPasswordBinding;
@@ -70,8 +71,9 @@ public class FragmentPassword extends Fragment {
             binding.editPass.setError("Không được để trống mất khẩu");
         }
         if (!phone.isEmpty() && !password.isEmpty()) {
-            if (phone.equalsIgnoreCase(AccountData.USERNAME) &&
-                    password.equalsIgnoreCase(AccountData.PASSWORD)) {
+            User user = AccountData.getAccount();
+            if (phone.equalsIgnoreCase(user.getPhoneNumber()) &&
+                    password.equalsIgnoreCase(user.getPassWord())) {
                 saveAccount(phone, password);
                 Intent intent = new Intent(getActivity(), HomeMainActivity.class);
                 startActivity(intent);

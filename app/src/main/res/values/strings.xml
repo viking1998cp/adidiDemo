@@ -19,7 +19,7 @@
     <string name="cheapAndFast"><![CDATA[Để tiết kiệm chi phí & nhanh nhất]]></string>
     <string name="chooseVoucher">ƯU ĐÃI ADIDI DÀNH CHO BẠN</string>
     <string name="readMore">Xem thêm</string>
-    <string name="errorAccount" >Vui lòng kiểm tra mật khẩu</string>
+    <string name="discoverWhithAdidi">KHÁM PHÁ CÙNG ADiDi</string>
     //Data Voucher
     <string name="voucherName1"><p> VỆ SINH MÁY LẠNH - PHÁ ĐẢO CƠN NÓNG NGAY NÀO </p></string>
     <string name="voucherDetail1"><p>Việc không vệ sinh lưới lọc thường xuyên khiến lưới lọc bị bám đầy bụi bẩn, điều hòa phải hút gió vào và đẩy gió ra ít hơn nhưng công suất tiêu thụ lại cao hơn lúc bình thường.</p>
@@ -31,4 +31,17 @@
     <string name="title_notification">Thông báo</string>
     <string name="title_function">Chức năng</string>
     <string name="logOut">Đăng xuất</string>
+
+    //Error
+    <string name="errorFirstName">Vui lòng Không được để trống họ</string>
+    <string name="errorAccount">Vui lòng kiểm tra mật khẩu</string>
+    <string name="errorLastName">Vui lòng Không được để trống tên</string>
+    <string name="errorPhone">Vui lòng Không được để trống số điện thoại</string>
+    <string name="errorEmail">Vui lòng Không được để trống Email</string>
+    <string name="errorPass">Vui lòng kiểm tra mật khẩu</string>
+    <string name="active">Kích hoạt</string>
+    <string name="helperActivityOTP">ADiDi sẽ gửi một mã kích hoạt qua số điện thoại bạn đã nhập. Dùng mã kích hoạt vừa nhận để kích hoạt tài khoản</string>
+    <string name="Comfirm">Xác thực</string>
+    <string name="successRegister">Đăng kí thành công</string>
+    <string name="errorRegister">Mã xác thực bạn nhận không đúng</string>
 </resources>

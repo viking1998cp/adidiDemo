@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2">
                     <EditText
+                        android:id="@+id/etfirstName"
                         android:layout_marginLeft="@dimen/margin8dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -40,6 +41,7 @@
                         android:hint="@string/firstNameHint"
                         />
                     <EditText
+                        android:id="@+id/etLastname"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -69,27 +71,32 @@
                         android:layout_weight="1"
                         android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
                     <EditText
+                        android:id="@+id/etPhone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="7"
                         android:hint="@string/phoneHint" />
                 </LinearLayout>
                 <EditText
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/emailHint" />
                 <EditText
+                    android:id="@+id/etPass"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/passHint" />
                 <EditText
+                    android:id="@+id/etIntroductionCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/introductionCodeHint" />
 
             </LinearLayout>
             <Button
+                android:id="@+id/btnRegister"
                 android:layout_marginTop="@dimen/margin8dp"
                 android:background="@drawable/background_button_no_boder"
                 android:layout_width="match_parent"

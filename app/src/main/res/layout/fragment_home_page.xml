@@ -23,7 +23,8 @@
                     android:padding="@dimen/padding10dp"
                     android:layout_marginTop="@dimen/linearMarginHomePage"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                   >
 
                     <TextView
                         android:layout_marginTop="@dimen/marginBiggest"
@@ -47,19 +48,25 @@
                         android:text="@string/chooseVoucher"
                         style="@style/textTitleHomePage"/>
                     <LinearLayout
+                        android:gravity="center"
                         android:padding="@dimen/padding10dp"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="350dp">
-                        <me.relex.circleindicator.CircleIndicator
+                        android:layout_height="@dimen/slideViewHeight"
+                        >
+                        <com.rd.PageIndicatorView
 
                             android:id="@+id/indicatorVoucher"
-                            android:layout_alignParentRight="true"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="12dp"
-                            app:ci_drawable="@drawable/select_indicator"
-                            app:ci_drawable_unselected="@drawable/un_select_indicator"/>
+                            app:piv_animationType="drop"
+                            app:piv_dynamicCount="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin8dp"
+                            app:piv_selectedColor="@color/colorOrangeYellow"
+                            app:piv_unselectedColor="@color/colorGray2"
+                            app:piv_padding="@dimen/padding10dp"
+                            app:piv_radius="@dimen/sideIndicator"
+                            />
 
                         <androidx.viewpager.widget.ViewPager
                             android:id="@+id/viewPagerVoucher"
@@ -71,11 +78,51 @@
                     </LinearLayout>
 
                     <TextView
-                        android:layout_marginTop="@dimen/marginBiggest"
-                        android:text="@string/chooseService"
-                        style="@style/textTitleHomePage"
-                        />
+                        android:layout_marginTop="@dimen/margin8dp"
+                        android:text="@string/discoverWhithAdidi"
+                        style="@style/textTitleHomePage"/>
 
+                    <LinearLayout
+                        android:gravity="center"
+                        android:padding="@dimen/padding10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/slideViewHeight"
+                        >
+                        <com.rd.PageIndicatorView
+
+                            android:id="@+id/indicatorDiscover"
+                            app:piv_animationType="drop"
+                            app:piv_dynamicCount="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin8dp"
+                            app:piv_selectedColor="@color/colorOrangeYellow"
+                            app:piv_unselectedColor="@color/colorGray2"
+                            app:piv_padding="@dimen/padding10dp"
+                            app:piv_radius="@dimen/sideIndicator"
+                            />
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/viewPagerDiscover"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_horizontal"
+
+                            />
+                    </LinearLayout>
+                    <Button
+                        android:padding="@dimen/padding10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/readMore"
+                        android:background="@drawable/background_button_round"
+                        android:drawableEnd="@drawable/ic_play_circle_filled_red_24dp"
+                        android:drawablePadding="@dimen/padding5dp"
+                        android:layout_marginBottom="@dimen/marginBiggest"
+                        android:elevation="10dp"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -97,6 +144,7 @@
                         android:background="@drawable/background_imv_round"
 
                         />
+
 
 
             </androidx.cardview.widget.CardView>
