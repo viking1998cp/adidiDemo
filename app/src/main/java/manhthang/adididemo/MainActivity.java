@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         checkStatusLogin();
         setOnClick();
+        
 //        LoadingDialog loadingDialog = new LoadingDialog(binding.getRoot().getContext(), R.style.translucentDialog);
 //        loadingDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 //        loadingDialog.setCancelable(false);

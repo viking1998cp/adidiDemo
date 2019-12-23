@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import manhthang.adididemo.Activity.DeliveryActivity;
 import manhthang.adididemo.Adapter.ItemServiceAdapter;
 import manhthang.adididemo.Adapter.VoucherAdapter;
 import manhthang.adididemo.Common;
@@ -96,13 +98,18 @@ public class FragmentHomePage extends Fragment {
     private void setUpServiceView() {
         binding.recycleService.setHasFixedSize(true);
         binding.recycleService.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 3));
-        ArrayList<Service> services = ServiceData.getDataService();
+        final ArrayList<Service> services = ServiceData.getDataService();
         adapterService = new ItemServiceAdapter(services);
 
         adapterService.setOnItemClickedListener(new ItemServiceAdapter.OnItemClickedListener() {
             @Override
             public void onItemClick(int postion, View v) {
-
+                Intent intent ;
+                switch (postion){
+                    case 2:
+                        intent = new Intent(getActivity(), DeliveryActivity.class);
+                        startActivity(intent);
+                }
             }
         });
 
@@ -111,11 +118,13 @@ public class FragmentHomePage extends Fragment {
 
     private void ActionToolbar() {
         ((AppCompatActivity)getActivity()).setSupportActionBar(binding.toolbar);
+
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
+
     }
 }

@@ -44,4 +44,14 @@
     <string name="Comfirm">Xác thực</string>
     <string name="successRegister">Đăng kí thành công</string>
     <string name="errorRegister">Mã xác thực bạn nhận không đúng</string>
+    <string name="installationSanitary">Lắp đặt - Vệ sinh</string>
+    <string name="groupProduct">Nhóm sản phẩm</string>
+    <string name="common">Phổ thông</string>
+    <string name="informationProduct">Thông tin sản phẩm</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="toast_msg_no_support">Thiết bị không hỗ trợ phần mềm</string>
+    <string name="toast_msg_setup_service_google">Dịch vụ Google play đã được cài đặt</string>
+    <string name="dialog_thongbao">Thông báo</string>
+    <string name="dialog_title_close">Đóng</string>
+    <string name="dialogTitle">Ios Dialog Title</string>
 </resources>

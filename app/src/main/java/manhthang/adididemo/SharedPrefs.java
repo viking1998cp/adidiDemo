@@ -12,7 +12,7 @@ public class SharedPrefs {
     public final static String PHONENUMBER = "phonenumber";
     public final static String PASSWORD = "password";
     public final static String STATUSLOGIN = "statuslogin";
-
+    public static final String ListAppFake = "listappfake";
 
     private SharedPrefs() {
         mSharedPreferences = AdidiApplication.getInstance().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

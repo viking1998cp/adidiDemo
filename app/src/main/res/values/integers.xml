@@ -5,4 +5,6 @@
   <integer name="strokeDrawingDuration">1000</integer>
     <integer name="maxline2">2</integer>
   <integer name="maxline1">1</integer>
+    <integer name="angleFillColor">90</integer>
+    <integer name="shadowDialog">1</integer>
 </resources>
