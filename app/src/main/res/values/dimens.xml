@@ -46,5 +46,6 @@
     <dimen name="padding15dp">15dp</dimen>
     <dimen name="fillLine">1dp</dimen>
     <dimen name="dialogButtonHeight">40dp</dimen>
+    <dimen name="radiusIosdialog">280dp</dimen>
 
 </resources>

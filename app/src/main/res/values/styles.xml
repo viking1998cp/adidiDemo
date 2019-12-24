@@ -117,6 +117,34 @@
         <item name="android:textSize">@dimen/fontMedium</item>
     </style>
 
+    <style name="CardViewMembershipDialog" parent="CardView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="cardCornerRadius">@dimen/radiusLarge</item>
+        <item name="cardElevation">@dimen/elevationSmall</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="contentPadding">@dimen/empty</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeIOSDialog" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeIosDialog" parent="AppThemeIOSDialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowActivityTransitions" tools:targetApi="lollipop">false</item>
+    </style>
+
     <integer name="radiusButtonDialog">1</integer>
     <string name="choose">Chọn</string>
+    <dimen name="elevationSmall">2dp</dimen>
+    <dimen name="empty">0dp</dimen>
 </resources>

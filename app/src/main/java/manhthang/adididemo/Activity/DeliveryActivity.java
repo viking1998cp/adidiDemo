@@ -62,6 +62,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
         setUpMapView();
         ActionToolbar();
         setUpOnClick();
+
     }
 
     private void setUpOnClick() {

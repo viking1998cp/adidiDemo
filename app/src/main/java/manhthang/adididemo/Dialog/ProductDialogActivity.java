@@ -5,39 +5,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
+
 
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+
+import java.util.ArrayList;
 
 import manhthang.adididemo.Activity.BaseNFCActivity;
+
+import manhthang.adididemo.Adapter.ItemProductGroupAdapter;
+import manhthang.adididemo.Adapter.ItemServiceAdapter;
+import manhthang.adididemo.Data.Product;
+import manhthang.adididemo.Object.ProductGroup;
 import manhthang.adididemo.R;
-import manhthang.adididemo.databinding.ActivityIosdialogBinding;
+import manhthang.adididemo.databinding.ActivityProductDialogBinding;
 
 /**
  * Created by Varun John on August 2018.
  */
-public class IOSDialogActivity extends BaseNFCActivity implements View.OnClickListener {
+public class ProductDialogActivity extends BaseNFCActivity implements View.OnClickListener {
 
-    public static void openActivity(Context context, IOSDialog iosDialog) {
-        IOSDialogActivity.iosDialog = iosDialog;
-        context.startActivity(new Intent(context, IOSDialogActivity.class));
+    public static void openActivity(Context context, ProductDialog iosDialog) {
+        ProductDialogActivity.iosDialog = iosDialog;
+        context.startActivity(new Intent(context, ProductDialogActivity.class));
     }
 
-    private Context context;
-    private static IOSDialog iosDialog;
+    private ActivityProductDialogBinding binding;
+    private static ProductDialog iosDialog;
 
-    ActivityIosdialogBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(0, 0);
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_iosdialog);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product_dialog);
         this.setFinishOnTouchOutside(false);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        IOSDialog.iosDialogActivity = this;
+
+
+        ProductDialog.iosDialogActivity = this;
 
         if (iosDialog.isEnableAnimation()) {
             binding.layoutDialog.setScaleX(1.3f);
@@ -53,10 +64,6 @@ public class IOSDialogActivity extends BaseNFCActivity implements View.OnClickLi
             binding.textViewTitle.setVisibility(View.GONE);
         }
 
-
-
-
-
         if (iosDialog.getNegativeButtonText() != null) {
             binding.textViewNegative.setText(iosDialog.getNegativeButtonText());
         } else {
@@ -65,6 +72,20 @@ public class IOSDialogActivity extends BaseNFCActivity implements View.OnClickLi
         }
 
         binding.textViewNegative.setOnClickListener(this);
+
+        ArrayList<ProductGroup> products = Product.getProductGroup();
+        final ItemProductGroupAdapter adapter = new ItemProductGroupAdapter(products);
+        adapter.setOnItemClickedListener(new ItemServiceAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClick(int postion, View v) {
+
+            }
+        });
+        binding.recycleProduct.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
+        binding.recycleProduct.setAdapter(adapter);
+
+
+
     }
 
     public void setTextViewTitle(String text) {
@@ -88,42 +109,10 @@ public class IOSDialogActivity extends BaseNFCActivity implements View.OnClickLi
     }
 
 
-    private boolean isAnimationExitDone;
-//    @Override
-//    public void onBackPressed() {
-//
-//        if (isAnimationExitDone || !iosDialog.isEnableAnimation()) {
-////            super.onBackPressed();
-//            overridePendingTransition(0, 0);
-//            finish();
-//            overridePendingTransition(0, 0);
-//        }
-//
-//        layoutContent.animate().alpha(0f).setDuration(200).setListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                isAnimationExitDone = true;
-//                onBackPressed();
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//            }
-//        }).setInterpolator(new AccelerateInterpolator()).start();
-//    }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
-       if (id == R.id.textViewNegative) {
+        if (id == R.id.textViewNegative) {
             if (iosDialog.getNegativeClickListener() != null) {
                 iosDialog.getNegativeClickListener().onClick(iosDialog);
             } else {
@@ -135,7 +124,7 @@ public class IOSDialogActivity extends BaseNFCActivity implements View.OnClickLi
 
     public void dismiss() {
 //        onBackPressed();
-        IOSDialogActivity.this.finish();
+        ProductDialogActivity.this.finish();
     }
 
     @Override

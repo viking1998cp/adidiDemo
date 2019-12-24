@@ -53,9 +53,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".Dialog.ProductDialogActivity"
+            android:theme="@style/AppThemeIosDialog" />
     </application>
 
 </manifest>

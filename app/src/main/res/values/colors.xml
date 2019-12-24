@@ -10,6 +10,9 @@
     <color name="colorGray">#808080</color>
     <color name="colorGray1">#F2F2F2</color>
     <color name="colorGray2">#D6D6D6</color>
+    <color name="colorGray3">#66000000</color>
+    <color name="colorGray4">#26000000</color>
+
     <color name="colorBlack">#000000</color>
     <color name="colorWhite1">#FAF9F9</color>
     <color name="colorOrangeYellowDark">#FFF55808</color>
@@ -26,5 +29,7 @@
 
     <color name="separator_ios_dialog">#1A000000</color>
     <color name="highlight_ios_dialog">#0F000000</color>
+
+    <color name="endColorDialog">#20FFFFFF</color>
 
 </resources>

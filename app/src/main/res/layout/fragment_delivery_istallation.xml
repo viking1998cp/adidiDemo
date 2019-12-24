@@ -28,6 +28,7 @@
                         style="@style/textService"
                         android:text="@string/groupProduct"/>
                     <TextView
+                        android:id="@+id/tvProucts"
                         android:padding="@dimen/padding2dp"
                         android:layout_width="0dp"
                         android:layout_weight="4"
