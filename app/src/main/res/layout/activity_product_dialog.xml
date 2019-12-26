@@ -61,15 +61,17 @@
                             android:textStyle="bold"
                             tools:text="Ios Dialog Title" />
                         <RadioGroup
+                            android:id="@+id/rdGroupButton"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycleProduct"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 />
                         </RadioGroup>
-
                     </LinearLayout>
 
                     <View

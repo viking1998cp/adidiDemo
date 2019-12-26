@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 
+import manhthang.adididemo.Object.ProductGroup;
+
 
 /**
  * Created by Varun John on August 2018.
@@ -21,9 +23,10 @@ public class ProductDialog {
     private Listener cancelListener;
     private boolean enableAnimation = true;
     private boolean cancelable = true;
+    private ProductGroup product;
     private View view;
 
-    static ProductDialogActivity iosDialogActivity;
+    static ProductDialogActivity productDialogActivity;
 
     private Context context;
 
@@ -36,8 +39,8 @@ public class ProductDialog {
     }
 
     public void dismiss() {
-        if (iosDialogActivity != null) {
-            iosDialogActivity.dismiss();
+        if (productDialogActivity != null) {
+            productDialogActivity.dismiss();
 
         }
     }
@@ -45,8 +48,8 @@ public class ProductDialog {
 
     public void setTitle(final String title) {
         this.title=title;
-        if(iosDialogActivity!=null){
-            iosDialogActivity.setTextViewTitle(this.title);
+        if(productDialogActivity!=null){
+            productDialogActivity.setTextViewTitle(this.title);
         }else {
             mHandler.postDelayed(new Runnable() {
                 @Override
@@ -58,8 +61,8 @@ public class ProductDialog {
     }
     public void setTitle(final int title) {
         this.title=context.getString(title);
-        if(iosDialogActivity!=null){
-            iosDialogActivity.setTextViewTitle(this.title);
+        if(productDialogActivity!=null){
+            productDialogActivity.setTextViewTitle(this.title);
         }else {
             mHandler.postDelayed(new Runnable() {
                 @Override
@@ -98,58 +101,68 @@ public class ProductDialog {
         return cancelable;
     }
 
+    public ProductGroup getProduct() {
+        return productDialogActivity.getProductSelect();
+    }
+
+
     public static class Builder {
 
-        private ProductDialog iosDialog;
+        private ProductDialog productDialog;
         private Context context;
 
         public Builder(Context context) {
             this.context = context;
-            iosDialog = new ProductDialog(context);
+            productDialog = new ProductDialog(context);
 
         }
 
         public ProductDialog build() {
-            return iosDialog;
+            return productDialog;
         }
 
         public Builder title(String title) {
-            iosDialog.title = title;
+            productDialog.title = title;
             return this;
         }
 
         public Builder title(int titleResourceId) {
-            iosDialog.title = context.getString(titleResourceId);
+            productDialog.title = context.getString(titleResourceId);
             return this;
         }
 
         public Builder negativeButtonText(String negativeButtonText) {
-            iosDialog.negativeButtonText = negativeButtonText;
+            productDialog.negativeButtonText = negativeButtonText;
             return this;
         }
 
         public Builder negativeButtonText(int negativeButtonTextResourceId) {
-            iosDialog.negativeButtonText = context.getString(negativeButtonTextResourceId);
+            productDialog.negativeButtonText = context.getString(negativeButtonTextResourceId);
             return this;
         }
 
         public Builder negativeClickListener(Listener negativeClickListener) {
-            iosDialog.negativeClickListener = negativeClickListener;
+            productDialog.negativeClickListener = negativeClickListener;
             return this;
         }
 
         public Builder cancelListener(Listener cancelListener) {
-            iosDialog.cancelListener = cancelListener;
+            productDialog.cancelListener = cancelListener;
             return this;
         }
 
         public Builder enableAnimation(boolean enableAnimation) {
-            iosDialog.enableAnimation = enableAnimation;
+            productDialog.enableAnimation = enableAnimation;
             return this;
         }
 
         public Builder cancelable(boolean cancelable) {
-            iosDialog.cancelable = cancelable;
+            productDialog.cancelable = cancelable;
+            return this;
+        }
+
+        public Builder product(ProductGroup product) {
+            productDialog.product = product;
             return this;
         }
     }

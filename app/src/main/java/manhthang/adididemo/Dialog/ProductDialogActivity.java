@@ -3,12 +3,14 @@ package manhthang.adididemo.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
@@ -27,13 +29,15 @@ import manhthang.adididemo.databinding.ActivityProductDialogBinding;
  */
 public class ProductDialogActivity extends BaseNFCActivity implements View.OnClickListener {
 
-    public static void openActivity(Context context, ProductDialog iosDialog) {
-        ProductDialogActivity.iosDialog = iosDialog;
+    private ItemProductGroupAdapter adapter;
+    public static void openActivity(Context context, ProductDialog productDialog) {
+        ProductDialogActivity.productDialog = productDialog;
         context.startActivity(new Intent(context, ProductDialogActivity.class));
+
     }
 
     private ActivityProductDialogBinding binding;
-    private static ProductDialog iosDialog;
+    private static ProductDialog productDialog;
 
 
     @Override
@@ -48,9 +52,9 @@ public class ProductDialogActivity extends BaseNFCActivity implements View.OnCli
         }
 
 
-        ProductDialog.iosDialogActivity = this;
+        ProductDialog.productDialogActivity = this;
 
-        if (iosDialog.isEnableAnimation()) {
+        if (productDialog.isEnableAnimation()) {
             binding.layoutDialog.setScaleX(1.3f);
             binding.layoutDialog.setScaleY(1.3f);
             binding.layoutContent.setAlpha(0);
@@ -58,14 +62,14 @@ public class ProductDialogActivity extends BaseNFCActivity implements View.OnCli
             binding.layoutDialog.animate().scaleX(1f).scaleY(1f).setDuration(250).setInterpolator(new DecelerateInterpolator()).start();
         }
 
-        if (iosDialog.getTitle() != null) {
-            binding.textViewTitle.setText(iosDialog.getTitle());
+        if (productDialog.getTitle() != null) {
+            binding.textViewTitle.setText(productDialog.getTitle());
         } else {
             binding.textViewTitle.setVisibility(View.GONE);
         }
 
-        if (iosDialog.getNegativeButtonText() != null) {
-            binding.textViewNegative.setText(iosDialog.getNegativeButtonText());
+        if (productDialog.getNegativeButtonText() != null) {
+            binding.textViewNegative.setText(productDialog.getNegativeButtonText());
         } else {
             binding.textViewNegative.setText("");
             binding.layoutNegative.setVisibility(View.GONE);
@@ -73,17 +77,17 @@ public class ProductDialogActivity extends BaseNFCActivity implements View.OnCli
 
         binding.textViewNegative.setOnClickListener(this);
 
-        ArrayList<ProductGroup> products = Product.getProductGroup();
-        final ItemProductGroupAdapter adapter = new ItemProductGroupAdapter(products);
-        adapter.setOnItemClickedListener(new ItemServiceAdapter.OnItemClickedListener() {
+        final ArrayList<ProductGroup> products = Product.getProductGroup();
+        adapter = new ItemProductGroupAdapter(products);
+        adapter.setOnItemClickedListener(new ItemProductGroupAdapter.OnItemClickedListener() {
             @Override
             public void onItemClick(int postion, View v) {
 
             }
         });
+
         binding.recycleProduct.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
         binding.recycleProduct.setAdapter(adapter);
-
 
 
     }
@@ -98,29 +102,35 @@ public class ProductDialogActivity extends BaseNFCActivity implements View.OnCli
     }
 
     public void onOutsideClick(View view) {
-        if (iosDialog.isCancelable()) {
-
-            if (iosDialog.getCancelListener() != null) {
-                iosDialog.getCancelListener().onClick(iosDialog);
+        if (productDialog.isCancelable()) {
+            if (productDialog.getCancelListener() != null) {
+                productDialog.getCancelListener().onClick(productDialog);
             }
-
             onBackPressed();
         }
     }
+
 
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.textViewNegative) {
-            if (iosDialog.getNegativeClickListener() != null) {
-                iosDialog.getNegativeClickListener().onClick(iosDialog);
+            if (productDialog.getNegativeClickListener() != null) {
+                productDialog.getNegativeClickListener().onClick(productDialog);
+                Log.d("BBB", "onClick: BBB");
             } else {
                 dismiss();
             }
         } else {
         }
     }
+
+    public ProductGroup getProductSelect() {
+        return adapter.getProductCheck();
+    }
+
+
 
     public void dismiss() {
 //        onBackPressed();

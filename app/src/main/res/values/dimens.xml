@@ -47,5 +47,7 @@
     <dimen name="fillLine">1dp</dimen>
     <dimen name="dialogButtonHeight">40dp</dimen>
     <dimen name="radiusIosdialog">280dp</dimen>
+    <dimen name="cameraControlHeight">50dp</dimen>
+    <dimen name="captrureImv">80dp</dimen>
 
 </resources>

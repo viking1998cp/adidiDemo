@@ -23,9 +23,9 @@
     //Data Voucher
     <string name="voucherName1"><p> VỆ SINH MÁY LẠNH - PHÁ ĐẢO CƠN NÓNG NGAY NÀO </p></string>
     <string name="voucherDetail1"><p>Việc không vệ sinh lưới lọc thường xuyên khiến lưới lọc bị bám đầy bụi bẩn, điều hòa phải hút gió vào và đẩy gió ra ít hơn nhưng công suất tiêu thụ lại cao hơn lúc bình thường.</p>
-<p>Như vậy, lượng&nbsp;<strong>điện năng tiêu thụ cao hơn</strong>, gây tiếng<strong>&nbsp;ồn</strong>&nbsp;nhiều hơn nhưng&nbsp;<strong>không mang lại hiệu quả làm lạnh tốt.</strong>&nbsp;</p>
-<p>Để khắc phục tình trạng trên bạn nên vệ sinh lưới lọc thường xuyên&nbsp;khoảng 1 tháng một lần (tùy vào mức độ sử dụng). Đối với những gia đình miền Bắc, cần tổng vệ sinh máy trước khi bước vào mùa hạ để đảm bảo điều hòa đạt được hiệu quả làm mát tối ưu.</p>
-<p><strong>Tải App Adidi -&gt; Vào mục lắp đặt -&gt; Nhập thông tin địa chỉ cần vệ sinh -&gt; chọn dịch vụ vệ sinh máy lạnh-&gt;ADIDI PHỤC VỤ TRONG VÒNG 30s.</strong></p></string>
+    <p>Như vậy, lượng&nbsp;<strong>điện năng tiêu thụ cao hơn</strong>, gây tiếng<strong>&nbsp;ồn</strong>&nbsp;nhiều hơn nhưng&nbsp;<strong>không mang lại hiệu quả làm lạnh tốt.</strong>&nbsp;</p>
+    <p>Để khắc phục tình trạng trên bạn nên vệ sinh lưới lọc thường xuyên&nbsp;khoảng 1 tháng một lần (tùy vào mức độ sử dụng). Đối với những gia đình miền Bắc, cần tổng vệ sinh máy trước khi bước vào mùa hạ để đảm bảo điều hòa đạt được hiệu quả làm mát tối ưu.</p>
+    <p><strong>Tải App Adidi -&gt; Vào mục lắp đặt -&gt; Nhập thông tin địa chỉ cần vệ sinh -&gt; chọn dịch vụ vệ sinh máy lạnh-&gt;ADIDI PHỤC VỤ TRONG VÒNG 30s.</strong></p></string>
     <string name="title_main">Trang chủ</string>
     <string name="title_list_order">Đơn hàng</string>
     <string name="title_notification">Thông báo</string>
@@ -54,4 +54,28 @@
     <string name="dialog_thongbao">Thông báo</string>
     <string name="dialog_title_close">Đóng</string>
     <string name="dialogTitle">Ios Dialog Title</string>
+
+    <!-- camera -->
+    <string name="title_camera_on">Bật</string>
+    <string name="title_camera_off">Tắt</string>
+    <string name="title_camera_auto">Tự động</string>
+    <string name="toast_msg_camera_disconnect">Không thể kết nối máy ảnh, vui lòng thử lại</string>
+    <string name="toast_msg_err_save_picture_please_try">Lỗi trong quá trình lưu ảnh, vui lòng chụp lại</string>
+    <string name="toast_msg_save_picture_please_wait">Đang lưu ảnh xin vui lòng đợi</string>
+    <string name="truoc_image">Trước</string>
+    <string name="sau_image">Sau</string>
+    <string name="error_message_not_gps">K-smart không thể lấy được vị trí của bạn, vui lòng liên hệ quản lý</string>
+    <string name="toast_message_image_send_sucess">Tải ảnh lên thành công</string>
+    <string name="dialog_want_delete_image">Bạn có muốn xóa ảnh?</string>
+    <string name="title_image">Hình ảnh:</string>
+    <string name="dialog_yes">Có</string>
+    <string name="dialog_not_acess">Không</string>
+    <string name="disconnect_server_image_auto_send_login">Hiện tại đang mất kết nối với máy chủ, album ảnh đã được lưu lại và sẽ tự động gửi tiếp khi có kết nối mạng</string>
+    <string name="toast_message_album_condition_send">Để gửi album lên hệ thống, bạn cần có ít nhất 1 ảnh</string>
+    <string name="toast_message_album_try_send">Album chưa có hình ảnh nào, vui lòng thử lại</string>
+    <string name="toast_message_album_info_update">Cập nhật thông tin album thành công</string>
+    <string name="title_take_image_free">Chụp ảnh tại điểm tự do</string>
+    <string name="error_message_170704">Có lỗi xảy ra, mã lỗi 170704</string>
+    <string name="cancel">Hủy</string>
+    <string name="message_unknow">Không xác định</string>
 </resources>

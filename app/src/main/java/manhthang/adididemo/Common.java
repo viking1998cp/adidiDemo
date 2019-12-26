@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
@@ -13,6 +15,8 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,13 +27,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Common {
 
     public static double windowWidth;
     public static double windowHeight;
+
+    //bien luu Activity hien tai
+    public static Activity Current_Activity = new AppCompatActivity();
 
     public static void ShowToast(Context context, String toast) {
         Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
@@ -159,5 +169,38 @@ public class Common {
             out += hex[i];
         }
         return out;
+    }
+
+    public static String getDiaChi(double lat, double lon) {
+        String strAdd = "";
+        Context c= AdidiApplication.getInstance();
+        try {
+            Geocoder geocoder = new Geocoder(c, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+            if (addresses != null) {
+
+                Address returnedAddress = addresses.get(0);
+                strAdd = returnedAddress.getAddressLine(0);
+                if (strAdd.equals("")) {
+                    strAdd = c.getResources().getString(R.string.message_unknow);
+                }
+            } else {
+                strAdd = c.getResources().getString(R.string.message_unknow);
+            }
+        } catch (Exception e) {
+            strAdd = c.getResources().getString(R.string.message_unknow);
+        }
+
+        return strAdd;
+    }
+
+    public static String formatChangePointDateTime(Date datetime) {
+        try {
+            SimpleDateFormat simpleDate = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+            return simpleDate.format(datetime);
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+        return datetime.toString();
     }
 }

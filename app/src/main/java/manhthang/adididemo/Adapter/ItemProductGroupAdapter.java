@@ -1,8 +1,10 @@
 package manhthang.adididemo.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -13,17 +15,19 @@ import java.util.ArrayList;
 import manhthang.adididemo.Object.ProductGroup;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ItemProductGroupBinding;
-import manhthang.adididemo.databinding.ItemServiceBinding;
 
 public class ItemProductGroupAdapter extends RecyclerView.Adapter<ItemProductGroupAdapter.ItemRowHolder> {
 
-    ArrayList<ProductGroup> products;
-
+    private ArrayList<ProductGroup> products;
+    private int mCheckedPostion ;
+    private ProductGroup productCheck  ;
+    private boolean isChecked = false;
     public ItemProductGroupAdapter(ArrayList<ProductGroup> products) {
         this.products = products;
+
     }
 
-    private ItemServiceAdapter.OnItemClickedListener onItemClickedListener;
+    private OnItemClickedListener onItemClickedListener;
 
     @NonNull
     @Override
@@ -36,28 +40,37 @@ public class ItemProductGroupAdapter extends RecyclerView.Adapter<ItemProductGro
     public void onBindViewHolder(@NonNull final ItemRowHolder holder, final int position) {
         final ProductGroup productGroup = products.get(position);
         holder.binding.rdProduct.setText(productGroup.getNameGroup());
-
-        if(productGroup.isChecked()) holder.binding.rdProduct.setChecked(true);
+        if(mCheckedPostion == position ) holder.binding.rdProduct.setChecked(true);
         else holder.binding.rdProduct.setChecked(false);
 
+        if(holder.binding.rdProduct.isChecked()){
+            productCheck = productGroup;
+            Log.d("BBB", "onBindViewHolder: "+productCheck.getNameGroup());
+        }
         holder.binding.rdProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!isChecked) {
+                    notifyItemChanged(mCheckedPostion);
+                    mCheckedPostion = position;
+                    notifyItemChanged(mCheckedPostion);
+                    isChecked = true;
 
-                setChecked(position);
-                notifyDataSetChanged();
+                } else {
+                    notifyItemChanged(mCheckedPostion);
+                    mCheckedPostion = position;
+                    notifyItemChanged(position);
+                    isChecked = false;
+                }
             }
         });
+        Log.d("BBB", "onBindViewHolder: "+isChecked);
+
 
     }
 
-    public void setChecked(int position){
-        products.get(position).setChecked(true);
-        for(int i=0;i<products.size();i++){
-            if(i!=position){
-                products.get(i).setChecked(false);
-            }
-        }
+    public ProductGroup getProductCheck() {
+        return productCheck;
     }
 
     @Override
@@ -81,9 +94,12 @@ public class ItemProductGroupAdapter extends RecyclerView.Adapter<ItemProductGro
         }
     }
 
+    public interface OnItemClickedListener {
+        void onItemClick(int postion, View v);
+    }
 
 
-    public void setOnItemClickedListener(ItemServiceAdapter.OnItemClickedListener onItemClickedListener) {
+    public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
     }
 }
