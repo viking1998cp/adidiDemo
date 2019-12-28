@@ -21,6 +21,7 @@
             android:background="@color/colorBlack50"
             android:layout_alignParentTop="true"
             android:padding="@dimen/padding20dp"
+            android:id="@+id/rtToolbar"
             >
             <ImageView
                 android:id="@+id/imvFlash"
@@ -40,31 +41,11 @@
                 android:gravity="right"/>
 
         </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBlack50"
-            android:layout_alignParentBottom="true"
-            android:padding="@dimen/padding20dp"
-            >
-
-            <ImageView
-                android:id="@+id/imvCaptrure"
-                android:layout_centerHorizontal="true"
-                android:layout_width="@dimen/captrureImv"
-                android:layout_height="@dimen/captrureImv"
-                android:src="@drawable/ic_captrure"/>
-
-            <ImageView
-                android:id="@+id/imvCamera"
-                android:layout_width="@dimen/imvIcon"
-                android:layout_height="@dimen/imvIcon"
-                android:src="@drawable/ic_video_camera"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                />
-
-        </RelativeLayout>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/imvImage"
+            android:layout_below="@id/rtToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </layout>

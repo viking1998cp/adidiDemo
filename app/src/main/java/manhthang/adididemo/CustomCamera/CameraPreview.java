@@ -19,6 +19,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
     }
 
     public void surfaceCreated(SurfaceHolder holder) {
@@ -126,6 +127,17 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             return;
         }
         getmCamera().setPreviewCallback(callback);
+    }
+
+    public void setFlashMode(String CameraFlashMode) {
+        try {
+            Camera.Parameters params = getmCamera().getParameters();
+            params.setFlashMode(CameraFlashMode);
+            getmCamera().setParameters(params);
+        } catch (Exception e) {
+            Log.d("BBB", "setFlashMode: "+e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

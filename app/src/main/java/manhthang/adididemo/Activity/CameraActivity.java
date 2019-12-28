@@ -2,6 +2,7 @@ package manhthang.adididemo.Activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,17 +11,23 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Camera;
+import android.media.MediaActionSound;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -30,7 +37,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import manhthang.adididemo.Common;
 import manhthang.adididemo.CustomCamera.CameraPreview;
@@ -39,7 +48,9 @@ import manhthang.adididemo.Object.ImageAlbumObject;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityCameraCaptrureBinding;
 
-public class CameraActivity extends Activity {
+import static java.security.AccessController.getContext;
+
+public class CameraActivity extends Activity implements Camera.AutoFocusCallback {
 
     private ActivityCameraCaptrureBinding binding;
     private Camera mCamera;
@@ -47,27 +58,26 @@ public class CameraActivity extends Activity {
     private Camera.PictureCallback mPicture;
     private Context myContext;
     private GoogleApiModel googleGPS;
-
+    private ProgressDialog progressDialog;
     private boolean cameraFront = false;
     public static Bitmap bitmap;
 
-    private ImageView imgPreview, img_change_camera_back;
-    private int Orient = 90;
-    private int LastOrient = 0;
+    private ImageView imgPreview;
+    private MediaPlayer mp;
     private final int change_camera = 0;
-    private int temp_change_camera = change_camera;
-    private String stateFlash = "auto";
+
+    private String stateFlash = "off";
     private boolean isSafeToTakePicture = true;
     private int witdh, height;
-    private static final int PICTURE_QUALITY = 85;
-    private double kinhdo;
-    private double vido;
-    private double acc;
+    private static final int PICTURE_QUALITY = 100;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_camera_captrure);
+        binding.imvFlash.setBackgroundResource(R.drawable.ic_flash_off);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         myContext = this;
@@ -81,7 +91,14 @@ public class CameraActivity extends Activity {
         mCamera.startPreview();
 
         setUpOnclick();
+        initDialog();
 
+    }
+
+    private void initDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Đang xử lý");
+        progressDialog.setCancelable(false);
     }
 
     private void setUpOnclick() {
@@ -90,21 +107,9 @@ public class CameraActivity extends Activity {
             public void onClick(View v) {
                 try {
                     if (isSafeToTakePicture) {
-
-                        // MD5.showLog("Orient:" + Orient);
-
-                        // MD5.showLog("LastOrient:" + LastOrient);
-
+                        progressDialog.show();
                         mPreview.getmCamera().takePicture(shutterCallback, null, jpegCallback);
-//                        binding.cPreview.setVisibility(View.VISIBLE);
-//                        new Handler().postDelayed(new Runnable() {
-//                            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-//                            @Override
-//                            public void run() {
-//                                binding.cPreview.setVisibility(View.INVISIBLE);
-//                            }
-//                        }, 150);
-//                        isSafeToTakePicture = false;
+                        isSafeToTakePicture = false;
                     }
                 } catch (Exception ex) {
                     isSafeToTakePicture = true;
@@ -127,48 +132,48 @@ public class CameraActivity extends Activity {
             }
         });
 
+        binding.imvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.imvFlash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stateFlash=="off"){
+                    stateFlash = "on";
+                    binding.imvFlash.setBackgroundResource(R.drawable.ic_flash_on);
+                    initCamera();
+                }else {
+                    stateFlash = "off";
+                    binding.imvFlash.setBackgroundResource(R.drawable.ic_flash_off);
+                    initCamera();
+                }
+            }
+        });
+
     }
 
-    // xoay camera mac dinh theo chieu dung
-    private int getLastOrient(int orient) {
-        Log.d("orient: ", orient + "");
+    public void initCamera(){
+        try {
 
-       /* if (temp_change_camera == 0) {
-            return 90;
-        }else {
-            return 270;
-        }*/
-
-        if (temp_change_camera == 0) {
-            if (orient == -1 || (orient >= 0 && orient < 45) || (orient >= 315)) {
-                return 90;
-            } else if (orient >= 45 && orient < 180) {
-                return 180;// chinh xoay hinh anh chup
-            } else if (orient < 315 && orient >= 180) {
-                return 0;
+            mPreview.setFlashMode(stateFlash);// on bat, off tat, auto tu dong bat den flash
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            Common.ShowToast(CameraActivity.this,getString(R.string.toast_msg_camera_disconnect));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Common.ShowToast(CameraActivity.this,getString(R.string.toast_msg_camera_disconnect));
+        } finally {
+            try {
+                System.gc();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } else {
-            if (orient == -1 || (orient >= 0 && orient < 45) || (orient >= 315)) {
-                return 90;
-            } else if (orient >= 45 && orient < 180) {
-                return 180;// chinh xoay hinh anh chup
-            } else if (orient < 315 && orient >= 180) {
-                return 0;
-            }
-
-           /* if (orient == -1 || (orient >= 0 && orient < 45) || (orient >= 315)) {
-                return 270;
-            } else if (orient >= 45 && orient < 180) {
-                return 180;// chinh xoay hinh anh chup
-            } else if (orient < 315 && orient >= 180) {
-                return 0;
-            }*/
-
         }
-        return 0;
-
     }
-
 
 
     public void onResume() {
@@ -231,79 +236,23 @@ public class CameraActivity extends Activity {
                 Matrix matrix = new Matrix();
                 //int witdh = 800, height = 600;
 
-
                 opt.inSampleSize = calculateInSampleSize(opt, witdh, height);
                 bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, opt);
 
+                matrix.setScale(-1, -1);
+                matrix.postRotate(270);
+                bitmap = getResizedBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), matrix);
 
-                if (temp_change_camera == 1) {
-                    // bitmap = getResizedBitmap(bitmap, witdh, height, matrix);
-                    float sizew = bitmap.getWidth() / witdh;
-                    float sizeh = bitmap.getHeight() / height;
-                    float sizewh = Math.max(sizew, sizeh);
-                    if (sizewh > 1) {
-                        bitmap = resizeBitmap(bitmap, sizewh);
-                    }
-                    matrix.setScale(2, 2);
-//                    matrix.postRotate();
-                    bitmap = getResizedBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), matrix);
-                } else {
-
-                    float sizew = bitmap.getWidth() / witdh;
-                    float sizeh = bitmap.getHeight() / height;
-                    float sizewh = Math.max(sizew, sizeh);
-                    if (sizewh > 1) {
-                        bitmap = resizeBitmap(bitmap, sizewh);
-                    }
-                    matrix.setScale(1, 1);
-                    matrix.postRotate(LastOrient);
-                    bitmap = getResizedBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), matrix);
-                    //opt.inSampleSize = calculateInSampleSize(opt, witdh, height);
-                    // bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, opt);
-                    // bitmap = getResizedBitmap(bitmap, witdh, height, matrix);
-
-                }
-
-
-                bitmap = themTimestampVaoAnh(bitmap);
 
                 if (!SaveImageToDisk(bitmap)) {
-                    Common.ShowToast(CameraActivity.this,getString(R.string.toast_msg_err_save_picture_please_try));
+//                    Common.ShowToastLong(getString(R.string.toast_msg_err_save_picture_please_try));
                 }
             } catch (OutOfMemoryError ex) {
-                //HamDungChung.ShowToast(Activity_ChupAnh_New.this, "Lỗi trong quá trình chụp và lưu ảnh, vui lòng chụp lại");
+                Common.ShowToast(CameraActivity.this, "Lỗi trong quá trình chụp và lưu ảnh, vui lòng chụp lại");
                 //ex.printStackTrace();
-                witdh = 600;
-                height = 450;
-                try {
-                    System.gc();
-                } catch (Exception ignored) {
 
-                }
-
-            } catch (Exception e) {
-                // HamDungChung.ShowToast(Activity_ChupAnh_New.this, "Lỗi trong quá trình chụp và lưu ảnh, vui lòng chụp lại");
-                //e.printStackTrace();
-                witdh = 600;
-                height = 450;
-                try {
-                    System.gc();
-                } catch (Exception ignored) {
-
-                }
             } finally {
-                try {
-                    if (bitmap != null && !bitmap.isRecycled()) {
-                        bitmap.recycle();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                try {
-                    System.gc();
-                } catch (Exception ignored) {
 
-                }
                 try {
                     mPreview.getmCamera().startPreview();
                 } catch (Exception e) {
@@ -312,36 +261,26 @@ public class CameraActivity extends Activity {
                 isSafeToTakePicture = true;
             }
 
-
         }
     };
 
-    // them thoi gian len tren anh khi chup
-    private Bitmap themTimestampVaoAnh(Bitmap toEdit) {
+    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
 
-        String dateTime = Common.formatChangePointDateTime(Calendar.getInstance().getTime()); // Lay thoi gian hien tai ve len anh chup
+        if (height > reqHeight || width > reqWidth) {
 
-        Canvas cs = new Canvas(toEdit);
-        Paint tPaint = new Paint();
-        tPaint.setTextSize(35);
-        tPaint.setColor(Color.RED);
-        tPaint.setStyle(Paint.Style.FILL);
-        float height = tPaint.measureText("yY");
-        float weight = tPaint.measureText(dateTime);
-        cs.drawText(dateTime, cs.getWidth() - weight - 10f, cs.getHeight() - height, tPaint);
-
-        return toEdit;
-    }
-
-    private static Bitmap resizeBitmap(Bitmap bitmap, float pickSize) {
-        int dstWidth = (int) (bitmap.getWidth() / pickSize);
-        int dstHeight = (int) (bitmap.getHeight() / pickSize);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, dstWidth,
-                dstHeight, false);
-        if (bitmap != null && !bitmap.isRecycled()) {
-            bitmap.recycle();
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
         }
-        return scaledBitmap;
+
+        return inSampleSize;
     }
 
     private Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight, Matrix matrix) {
@@ -364,26 +303,6 @@ public class CameraActivity extends Activity {
     }
 
 
-
-    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
     // luu anh khi chup vao bo nho may
     private boolean SaveImageToDisk(Bitmap bm) {
         FileOutputStream outStream = null;
@@ -400,27 +319,9 @@ public class CameraActivity extends Activity {
             outFile = new File(dir, fileName);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, PICTURE_QUALITY, stream);
-            Bitmap anhNho = Bitmap.createScaledBitmap(bm, bm.getWidth(), bm.getHeight(), false);
 
             try {
-                if (imgPreview != null && imgPreview.getDrawable() != null) {
-                    Bitmap bmNho = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
-                    if (bmNho != null && !bmNho.isRecycled()) {
-                        bmNho.recycle();
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
                 imgPreview.setImageDrawable(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                imgPreview.setImageBitmap(anhNho);
-            } catch (OutOfMemoryError e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -432,15 +333,18 @@ public class CameraActivity extends Activity {
 
             try {
                 ImageAlbumObject image = new ImageAlbumObject();
+                image.setGhichu("");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
                 String dateTime = sdf.format(Calendar.getInstance().getTime());
                 image.setThoigianchup(dateTime);
-                image.setKinhdo(kinhdo);
-                image.setVido(vido);
-                image.setDiachi(Common.getDiaChi( vido, kinhdo));
-                image.setAcc(acc);
-                image.setPath(fileName);
 
+                image.setPath(dir.getPath()+"/"+fileName);
+                Log.d("BBB", "SaveImageToDisk: "+image.getPath());
+
+                Intent intent = new Intent(CameraActivity.this,PictrureActivity.class);
+                intent.putExtra("image",image);
+                startActivity(intent);
+                progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -522,4 +426,78 @@ public class CameraActivity extends Activity {
         super.onDestroy();
     }
 
+    //Focus camera
+    public void touchFocusCamera( final Rect touchFocusRect ) {
+
+        //Convert touche coordinate, in width and height to -/+ 1000 range
+        final Rect targetFocusRect = new Rect(
+                touchFocusRect.left * 2000/mPreview.getWidth() - 1000,
+                touchFocusRect.top * 2000/mPreview.getHeight() - 1000,
+                touchFocusRect.right * 2000/mPreview.getWidth() - 1000,
+                touchFocusRect.bottom * 2000/mPreview.getHeight() - 1000);
+
+        final List<Camera.Area> focusList = new ArrayList<Camera.Area>();
+        Camera.Area focusArea = new Camera.Area(targetFocusRect, 1000);
+        focusList.add(focusArea);
+
+        Camera.Parameters para = mCamera.getParameters();
+        List<String> supportedFocusModes = para.getSupportedFocusModes();
+        if ( supportedFocusModes != null &&
+                supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO) ) {
+
+            try {
+
+                para.setFocusAreas(focusList);
+                para.setMeteringAreas(focusList);
+                mCamera.setParameters(para);
+
+                mCamera.autoFocus( CameraActivity.this );
+
+            } catch (Exception e) {
+                Log.e("BBB", "handleFocus: " + e.getMessage() );
+            }
+
+        }
+
+    }
+
+    //Auto focus
+    @Override
+    public void onAutoFocus(boolean success, Camera camera) {
+        if ( success ) {
+            camera.cancelAutoFocus();
+        }
+
+        float focusDistances[] = new float[3];
+        camera.getParameters().getFocusDistances(focusDistances);
+
+    }
+
+    //Click screen use auto focus
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        if( event.getAction() == MotionEvent.ACTION_DOWN ) {
+
+            // Get the pointer's current position
+            float x = event.getX();
+            float y = event.getY();
+            float touchMajor = event.getTouchMajor();
+            float touchMinor = event.getTouchMinor();
+
+            Rect touchRect = new Rect(
+                    (int)(x - touchMajor/2),
+                    (int)(y - touchMinor/2),
+                    (int)(x + touchMajor/2),
+                    (int)(y + touchMinor/2));
+
+            this.touchFocusCamera(touchRect);
+
+            mp = MediaPlayer.create(CameraActivity.this, R.raw.camera_focusing);
+            mp.start();
+        }
+
+        return true;
+
+    }
 }
