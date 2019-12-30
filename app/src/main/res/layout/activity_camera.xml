@@ -30,14 +30,10 @@
 
             <TextView
                 android:id="@+id/imvCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_alignParentRight="true"
+                style="@style/TextCamera"
                 android:text="@string/cancel"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/fontMedium"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 
@@ -50,10 +46,10 @@
             >
 
             <ImageView
-                android:id="@+id/imvCaptrure"
+                android:id="@+id/imvTakeAPhoto"
                 android:layout_centerHorizontal="true"
-                android:layout_width="@dimen/captrureImv"
-                android:layout_height="@dimen/captrureImv"
+                android:layout_width="@dimen/takeAPicture"
+                android:layout_height="@dimen/takeAPicture"
                 android:src="@drawable/ic_captrure"/>
 
             <ImageView

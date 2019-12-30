@@ -42,6 +42,7 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin10dp"
                     android:weightSum="10">
                     <TextView
                         style="@style/textService"
@@ -60,6 +61,11 @@
                             />
                     </LinearLayout>
                 </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewImageProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout

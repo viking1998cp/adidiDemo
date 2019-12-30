@@ -78,4 +78,8 @@
     <string name="error_message_170704">Có lỗi xảy ra, mã lỗi 170704</string>
     <string name="cancel">Hủy</string>
     <string name="message_unknow">Không xác định</string>
+    <string name="takePhotoAgain">Chụp lại</string>
+    <string name="save">Lưu</string>
+    <string name="choose">Chọn</string>
+
 </resources>

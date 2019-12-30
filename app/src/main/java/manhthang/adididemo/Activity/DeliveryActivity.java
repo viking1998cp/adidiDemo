@@ -167,7 +167,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
             List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
             Address obj = addresses.get(0);
             String add = obj.getAddressLine(0);
-            Log.d("BBB", "getAddress: "+add);
+            Log.d("BBB", "getAddress: " + add);
             return add;
             // Toast.makeText(this, "Address=>" + add,
             // Toast.LENGTH_SHORT).show();
@@ -215,6 +215,5 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
     public void onMessageEvent(String event) {
 
     }
-
 
 }

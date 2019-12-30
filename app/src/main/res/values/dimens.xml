@@ -48,6 +48,10 @@
     <dimen name="dialogButtonHeight">40dp</dimen>
     <dimen name="radiusIosdialog">280dp</dimen>
     <dimen name="cameraControlHeight">50dp</dimen>
-    <dimen name="captrureImv">80dp</dimen>
+    <dimen name="takeAPicture">80dp</dimen>
+    <dimen name="elevationSmall">2dp</dimen>
+    <dimen name="empty">0dp</dimen>
+    <dimen name="cardviewImageAlbum">150dp</dimen>
+    <dimen name="imvAlbumProduct">150dp</dimen>
 
 </resources>

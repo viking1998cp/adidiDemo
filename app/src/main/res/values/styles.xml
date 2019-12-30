@@ -143,8 +143,13 @@
         <item name="android:windowActivityTransitions" tools:targetApi="lollipop">false</item>
     </style>
 
-    <integer name="radiusButtonDialog">1</integer>
-    <string name="choose">Chọn</string>
-    <dimen name="elevationSmall">2dp</dimen>
-    <dimen name="empty">0dp</dimen>
+   <style name="TextCamera" >
+       <item name="android:textSize">@dimen/fontMedium</item>
+       <item name="android:layout_height"> wrap_content</item>
+       <item name="android:layout_width" >wrap_content</item>
+       <item name="android:textColor">@color/colorWhite</item>
+       <item name="android:layout_alignParentLeft">true</item>
+   </style>
+
+
 </resources>

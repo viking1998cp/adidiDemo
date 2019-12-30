@@ -1,33 +1,24 @@
 package manhthang.adididemo.Activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Camera;
-import android.media.MediaActionSound;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.databinding.DataBindingUtil;
 
@@ -44,27 +35,24 @@ import java.util.List;
 import manhthang.adididemo.Common;
 import manhthang.adididemo.CustomCamera.CameraPreview;
 import manhthang.adididemo.Manager.GoogleApiModel;
-import manhthang.adididemo.Object.ImageAlbumObject;
+import manhthang.adididemo.Object.ImageAlbum;
 import manhthang.adididemo.R;
-import manhthang.adididemo.databinding.ActivityCameraCaptrureBinding;
+import manhthang.adididemo.databinding.ActivityCameraBinding;
 
-import static java.security.AccessController.getContext;
 
 public class CameraActivity extends Activity implements Camera.AutoFocusCallback {
 
-    private ActivityCameraCaptrureBinding binding;
+    private ActivityCameraBinding binding;
     private Camera mCamera;
     private CameraPreview mPreview;
     private Camera.PictureCallback mPicture;
     private Context myContext;
-    private GoogleApiModel googleGPS;
     private ProgressDialog progressDialog;
-    private boolean cameraFront = false;
     public static Bitmap bitmap;
+    private ImageAlbum image;
 
     private ImageView imgPreview;
     private MediaPlayer mp;
-    private final int change_camera = 0;
 
     private String stateFlash = "off";
     private boolean isSafeToTakePicture = true;
@@ -76,7 +64,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_camera_captrure);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_camera);
         binding.imvFlash.setBackgroundResource(R.drawable.ic_flash_off);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -102,7 +90,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
     }
 
     private void setUpOnclick() {
-        binding.imvCaptrure.setOnClickListener(new View.OnClickListener() {
+        binding.imvTakeAPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -236,7 +224,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
                 Matrix matrix = new Matrix();
                 //int witdh = 800, height = 600;
 
-                opt.inSampleSize = calculateInSampleSize(opt, witdh, height);
+
                 bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, opt);
 
                 matrix.setScale(-1, -1);
@@ -264,25 +252,6 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
         }
     };
 
-    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-            while ((halfHeight / inSampleSize) > reqHeight
-                    && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
     private Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight, Matrix matrix) {
         int width = bm.getWidth();
         int height = bm.getHeight();
@@ -295,7 +264,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
 
         // "RECREATE" THE NEW BITMAP
         Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
+                bm, 0, 0, width, height, matrix, true);
         if (bm != null && !bm.isRecycled()) {
             bm.recycle();
         }
@@ -332,7 +301,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
             outStream.flush();
 
             try {
-                ImageAlbumObject image = new ImageAlbumObject();
+                image = new ImageAlbum();
                 image.setGhichu("");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
                 String dateTime = sdf.format(Calendar.getInstance().getTime());
@@ -343,7 +312,7 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
 
                 Intent intent = new Intent(CameraActivity.this,PictrureActivity.class);
                 intent.putExtra("image",image);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -402,27 +371,12 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
         }
         if (imgPreview != null) {
             try {
-                if (imgPreview != null && imgPreview.getDrawable() != null) {
-                    Bitmap bmNho = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
-                    if (bmNho != null && !bmNho.isRecycled()) {
-                        bmNho.recycle();
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
                 imgPreview.setImageDrawable(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        try {
-            googleGPS.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         super.onDestroy();
     }
 
@@ -499,5 +453,16 @@ public class CameraActivity extends Activity implements Camera.AutoFocusCallback
 
         return true;
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1 && resultCode ==1){
+            Intent intent = new Intent();
+            intent.putExtra("image", image);
+            setResult(1, intent);
+            finish();
+        }
     }
 }

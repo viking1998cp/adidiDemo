@@ -8,14 +8,14 @@ import java.io.Serializable;
  * Created by Hoangdh on 24/09/2016.
  * edit tungda
  */
-public class ImageAlbumObject implements Serializable{
+public class ImageAlbum implements Serializable{
 
 
     private String thoigianchup;
     private String ghichu;
     private String path;
 
-    public ImageAlbumObject() {
+    public ImageAlbum() {
     }
 
     public String getThoigianchup() {
