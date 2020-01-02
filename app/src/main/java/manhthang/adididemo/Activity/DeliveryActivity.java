@@ -45,6 +45,9 @@ import manhthang.adididemo.Data.Product;
 import manhthang.adididemo.Fragment.FragmentDeliveryInstallation;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityDeliveryBinding;
+/**
+ * Created by manh thắng 98.
+ */
 
 public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnCameraMoveStartedListener, GoogleMap.OnCameraIdleListener {
     private ActivityDeliveryBinding binding;
@@ -73,6 +76,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
 
 
     private void setUpMapView() {
+        //Set up google map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -108,6 +112,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
@@ -118,6 +123,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.setOnCameraIdleListener(this);
         mMap.getUiSettings().setRotateGesturesEnabled(false);
         mMap.setMyLocationEnabled(true);
+        //get my location
         mFusedLocationClient.getLastLocation().addOnSuccessListener(DeliveryActivity.this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -141,7 +147,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
     private void zoomTarget(double lat, double lng) {
         try {
             CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(lat, lng)).zoom(18).build();
+                    .target(new LatLng(lat, lng)).zoom(15).build();
             mMap.animateCamera(CameraUpdateFactory
                     .newCameraPosition(cameraPosition));
         } catch (Exception e) {
@@ -160,6 +166,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
+    //All take name location from lat and logt
     public String getAddress(double lat, double lng) {
         Geocoder geocoder = new Geocoder(
                 DeliveryActivity.this, Locale.getDefault());
@@ -181,6 +188,7 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
+    //Move camera to my location
     @Override
     public void onCameraMoveStarted(int reason) {
 
@@ -210,10 +218,5 @@ public class DeliveryActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
-    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(String event) {
-
-    }
 
 }

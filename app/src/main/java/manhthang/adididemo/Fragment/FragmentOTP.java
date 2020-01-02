@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import manhthang.adididemo.R;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class FragmentOTP extends Fragment {
     private View view;
     @Nullable

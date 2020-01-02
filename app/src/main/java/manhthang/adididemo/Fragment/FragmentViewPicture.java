@@ -1,40 +1,51 @@
-package manhthang.adididemo.Activity;
+package manhthang.adididemo.Fragment;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-
-import java.io.File;
+import android.view.ViewGroup;
 
 import manhthang.adididemo.Common;
 import manhthang.adididemo.Object.ImageAlbum;
 import manhthang.adididemo.R;
-import manhthang.adididemo.databinding.ActivityPictrureBinding;
+import manhthang.adididemo.databinding.FragmentPictrureBinding;
+/**
+ * Created by manh thắng 98.
+ */
+public class FragmentViewPicture extends Fragment {
 
-public class PictrureActivity extends AppCompatActivity {
-
-    private ActivityPictrureBinding binding;
+    private FragmentPictrureBinding binding;
     private ScaleGestureDetector scaleGestureDetector;
     private float mScaleFactor = 1.0f;
 
     private ImageAlbum image;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pictrure);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pictrure, container, false);
 
-        image = (ImageAlbum) getIntent().getSerializableExtra("image");
-        scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            image = (ImageAlbum) bundle.getSerializable("image");
+        }
+
+        scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
 
         initView();
         setUpOnClick();
+
+        return binding.getRoot();
     }
 
     private void setUpOnClick() {
@@ -42,7 +53,7 @@ public class PictrureActivity extends AppCompatActivity {
         binding.imvAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getActivity().finish();
             }
         });
 
@@ -50,8 +61,18 @@ public class PictrureActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                setResult(1, intent);
-                finish();
+                intent.putExtra("image", image);
+                getActivity().setResult(1, intent);
+                getActivity().finish();
+            }
+        });
+
+        binding.getRoot().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                scaleGestureDetector.onTouchEvent(event);
+                return false;
             }
         });
     }
@@ -61,12 +82,6 @@ public class PictrureActivity extends AppCompatActivity {
         if(bitmap != null){
             binding.imvImage.setImageBitmap(bitmap);
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        scaleGestureDetector.onTouchEvent(motionEvent);
-        return true;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {

@@ -20,7 +20,9 @@ import manhthang.adididemo.Object.User;
 import manhthang.adididemo.R;
 import manhthang.adididemo.SharedPrefs;
 import manhthang.adididemo.databinding.FragmentPasswordBinding;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class FragmentPassword extends Fragment {
     private View view;
     private FragmentPasswordBinding binding;

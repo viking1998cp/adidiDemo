@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Check null
                 User user =new User();
                 Boolean check =true;
                 if(binding.etfirstName.getText().toString().isEmpty()){

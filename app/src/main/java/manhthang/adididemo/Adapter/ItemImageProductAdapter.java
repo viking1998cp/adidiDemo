@@ -15,7 +15,9 @@ import manhthang.adididemo.Common;
 import manhthang.adididemo.Object.ImageAlbum;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ItemImageAlbumBinding;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class ItemImageProductAdapter extends RecyclerView.Adapter<ItemImageProductAdapter.ItemRowHolder> {
     private ArrayList<ImageAlbum> images;
 
@@ -37,11 +39,18 @@ public class ItemImageProductAdapter extends RecyclerView.Adapter<ItemImageProdu
     @Override
     public void onBindViewHolder(@NonNull final ItemRowHolder holder, final int position) {
 
-        ImageAlbum image = images.get(position);
+        final ImageAlbum image = images.get(position);
         Bitmap bitmap = Common.returnBitmapFromStorage(image.getPath());
         if(bitmap != null){
             holder.binding.imvAlbum.setImageBitmap(bitmap);
         }
+        holder.binding.imvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                images.remove(image);
+                notifyDataSetChanged();
+            }
+        });
 
     }
 

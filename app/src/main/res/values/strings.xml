@@ -81,5 +81,8 @@
     <string name="takePhotoAgain">Chụp lại</string>
     <string name="save">Lưu</string>
     <string name="choose">Chọn</string>
+    <string name="searchLocationVoice">Tìm kiếm bằng giọng nói</string>
+    <string name="searchLocation">Tìm kiếm địa chỉ</string>
+    <string name="back">Quay lại</string>
 
 </resources>

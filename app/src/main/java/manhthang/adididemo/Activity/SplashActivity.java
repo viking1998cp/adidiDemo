@@ -24,7 +24,9 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class SplashActivity extends Activity {
 
     private AlertDialog myAlertDialog;

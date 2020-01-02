@@ -35,6 +35,9 @@ import org.greenrobot.eventbus.Subscribe;
 import manhthang.adididemo.Common;
 import manhthang.adididemo.EventBus.KeyboardChangeStateEvent;
 import manhthang.adididemo.EventBus.NFCTagDiscoveredEvent;
+/**
+ * Created by manh thắng 98.
+ */
 
 public class BaseNFCActivity extends AppCompatActivity {
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 6969;

@@ -23,7 +23,7 @@
 
             app:itemBackground="@color/colorWhite"
 
-            app:menu="@menu/navigation"
+            app:menu="@menu/navigation_home"
             app:itemTextColor="@color/bottom_nav_color"
             app:itemIconTint="@color/bottom_nav_color"
             app:labelVisibilityMode="labeled"

@@ -148,8 +148,18 @@
        <item name="android:layout_height"> wrap_content</item>
        <item name="android:layout_width" >wrap_content</item>
        <item name="android:textColor">@color/colorWhite</item>
-       <item name="android:layout_alignParentLeft">true</item>
    </style>
+
+    <style name="et_searchView">
+        <item name="android:gravity" >center</item>
+        <item name="android:hint">@string/searchLocation</item>
+        <item name="android:textSize">@dimen/fontMediumSmall</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:colorControlNormal" >@android:color/transparent</item>
+        <item name="colorAccent">@color/colorBlack</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">@dimen/padding5dp</item>
+    </style>
 
 
 </resources>

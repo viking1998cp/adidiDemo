@@ -51,7 +51,10 @@
     <dimen name="takeAPicture">80dp</dimen>
     <dimen name="elevationSmall">2dp</dimen>
     <dimen name="empty">0dp</dimen>
-    <dimen name="cardviewImageAlbum">150dp</dimen>
+    <dimen name="imageAlbum">100dp</dimen>
     <dimen name="imvAlbumProduct">150dp</dimen>
+
+    <dimen name="searchViewHeight">30dp</dimen>
+    <dimen name="width3dp">3dp</dimen>
 
 </resources>

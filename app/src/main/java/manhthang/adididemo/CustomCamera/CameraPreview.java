@@ -129,6 +129,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         getmCamera().setPreviewCallback(callback);
     }
 
+
     public void setFlashMode(String CameraFlashMode) {
         try {
             Camera.Parameters params = getmCamera().getParameters();

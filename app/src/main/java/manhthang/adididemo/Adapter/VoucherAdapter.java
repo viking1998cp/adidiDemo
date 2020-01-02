@@ -17,7 +17,9 @@ import manhthang.adididemo.Common;
 import manhthang.adididemo.Object.Voucher;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ItemVoucherBinding;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class VoucherAdapter extends PagerAdapter {
 
     private ArrayList<Voucher> vouchers;

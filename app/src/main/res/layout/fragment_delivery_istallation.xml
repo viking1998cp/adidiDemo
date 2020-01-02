@@ -65,7 +65,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleViewImageProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -104,7 +105,6 @@
             </LinearLayout>
 
             <LinearLayout
-
                 style="@style/linearServiceFragment"
                 android:weightSum="10">
 
@@ -123,6 +123,7 @@
                     android:theme="@style/textLocation"
                     />
                 <ImageView
+                    android:id="@+id/imvSearchLocation"
                     android:layout_gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

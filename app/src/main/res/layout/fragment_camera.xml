@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/cPreview">
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack50"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/padding20dp"
+            >
+            <ImageView
+                android:id="@+id/imvFlash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                />
+
+            <TextView
+                android:id="@+id/imvCancel"
+                style="@style/TextCamera"
+                android:text="@string/cancel"
+                android:layout_alignParentRight="true"
+            />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack50"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/padding20dp"
+            >
+
+            <ImageView
+                android:id="@+id/imvTakeAPhoto"
+                android:layout_centerHorizontal="true"
+                android:layout_width="@dimen/takeAPicture"
+                android:layout_height="@dimen/takeAPicture"
+                android:src="@drawable/ic_captrure"/>
+
+            <ImageView
+                android:id="@+id/imvCamera"
+                android:layout_width="@dimen/imvIcon"
+                android:layout_height="@dimen/imvIcon"
+                android:src="@drawable/ic_video_camera"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

@@ -16,7 +16,9 @@ import manhthang.adididemo.MainActivity;
 import manhthang.adididemo.R;
 import manhthang.adididemo.SharedPrefs;
 import manhthang.adididemo.databinding.FragmentFunctionBinding;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class FragmentFunction extends Fragment {
     private FragmentFunctionBinding binding;
     @Nullable

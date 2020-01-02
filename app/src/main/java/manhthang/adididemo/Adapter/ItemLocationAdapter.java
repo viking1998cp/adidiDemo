@@ -1,6 +1,5 @@
 package manhthang.adididemo.Adapter;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,48 +10,45 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import manhthang.adididemo.Common;
-import manhthang.adididemo.Object.Service;
+import manhthang.adididemo.Object.Location;
 import manhthang.adididemo.R;
-import manhthang.adididemo.databinding.ItemServiceBinding;
+import manhthang.adididemo.databinding.ItemLocationBinding;
 /**
  * Created by manh thắng 98.
  */
-public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.ItemRowHolder> {
+public class ItemLocationAdapter extends RecyclerView.Adapter<ItemLocationAdapter.ItemRowHolder>{
+
 
     private OnItemClickedListener onItemClickedListener;
+    private ArrayList<Location> locations;
 
-    private ArrayList<Service> arrayList;
-
-    public ItemServiceAdapter(ArrayList<Service> arrayList) {
-        this.arrayList = arrayList;
+    public ItemLocationAdapter(ArrayList<Location> locations) {
+        this.locations = locations;
     }
 
     @NonNull
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemServiceBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_service, parent, false);
-        return new ItemServiceAdapter.ItemRowHolder(binding);
+        ItemLocationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_location, parent, false);
+        return new ItemLocationAdapter.ItemRowHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemRowHolder holder, int position) {
-
-        Service service = arrayList.get(position);
-        holder.binding.imvService.setImageResource(service.getIdImv());
-        holder.binding.nameService.setText(service.getTitle());
-
+        Location location = locations.get(position);
+        holder.binding.tvName.setText(location.getNameLocation());
+        holder.binding.tvNameDetail.setText(location.getNameDetailLocation());
     }
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return locations.size();
     }
 
     public class ItemRowHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ItemServiceBinding binding;
+        ItemLocationBinding binding;
 
-        private ItemRowHolder(ItemServiceBinding view) {
+        private ItemRowHolder(ItemLocationBinding view) {
             super(view.getRoot());
             binding = view;
             view.getRoot().setOnClickListener(this);
@@ -73,5 +69,4 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
     public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
     }
-
 }

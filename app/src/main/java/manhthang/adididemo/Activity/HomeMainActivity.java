@@ -35,6 +35,7 @@ public class HomeMainActivity extends AppCompatActivity {
 
     }
 
+    //Menu bottom click
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

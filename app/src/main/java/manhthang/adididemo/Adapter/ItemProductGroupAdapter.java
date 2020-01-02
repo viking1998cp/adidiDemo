@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import manhthang.adididemo.Object.ProductGroup;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ItemProductGroupBinding;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class ItemProductGroupAdapter extends RecyclerView.Adapter<ItemProductGroupAdapter.ItemRowHolder> {
 
     private ArrayList<ProductGroup> products;
@@ -47,6 +49,7 @@ public class ItemProductGroupAdapter extends RecyclerView.Adapter<ItemProductGro
             productCheck = productGroup;
             Log.d("BBB", "onBindViewHolder: "+productCheck.getNameGroup());
         }
+        //click to one item , other item un check
         holder.binding.rdProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

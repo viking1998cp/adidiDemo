@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,13 +20,13 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 
 import manhthang.adididemo.Activity.CameraActivity;
+import manhthang.adididemo.Activity.SearchLocationActivity;
 import manhthang.adididemo.Adapter.ItemImageProductAdapter;
 import manhthang.adididemo.Dialog.ProductDialog;
 import manhthang.adididemo.Object.ImageAlbum;
 import manhthang.adididemo.Object.ProductGroup;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.FragmentDeliveryIstallationBinding;
-import manhthang.adididemo.databinding.ItemImageAlbumBinding;
 
 public class FragmentDeliveryInstallation extends Fragment {
 
@@ -45,12 +45,23 @@ public class FragmentDeliveryInstallation extends Fragment {
         return binding.getRoot();
     }
 
+
     private void setUpImageAlbumProduct() {
 
         images = new ArrayList<>();
         productImageAdapter = new ItemImageProductAdapter(images);
-        binding.recycleViewImageProduct.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 5));
+        binding.recycleViewImageProduct.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.recycleViewImageProduct.setAdapter(productImageAdapter);
+        productImageAdapter.setOnItemClickedListener(new ItemImageProductAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClick(int postion, View v) {
+
+            }
+        });
+        binding.recycleViewImageProduct.setHasFixedSize(true);
+        binding.recycleViewImageProduct.setItemViewCacheSize(20);
+        binding.recycleViewImageProduct.setDrawingCacheEnabled(true);
+        binding.recycleViewImageProduct.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
     }
 
     private ProductDialog productDialog;
@@ -90,6 +101,14 @@ public class FragmentDeliveryInstallation extends Fragment {
             }
         });
 
+        binding.imvSearchLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchLocationActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -118,6 +137,8 @@ public class FragmentDeliveryInstallation extends Fragment {
         binding.etUserLocation.setText(event);
     }
 
+
+    //take data from camera Activity
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,7 +150,6 @@ public class FragmentDeliveryInstallation extends Fragment {
             }
             Log.d("BBB", "onActivityResult: NNN");
         }
-        Log.d("BBB", "onActivityResult: "+resultCode);
 
     }
 }

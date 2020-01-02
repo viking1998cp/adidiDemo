@@ -12,6 +12,9 @@ import manhthang.adididemo.Data.AccountData;
 import manhthang.adididemo.Object.User;
 import manhthang.adididemo.R;
 import manhthang.adididemo.databinding.ActivityComfirmOtpBinding;
+/**
+ * Created by manh thắng 98.
+ */
 
 public class ComfirmOTPActivity extends AppCompatActivity {
     ActivityComfirmOtpBinding binding;
@@ -25,6 +28,7 @@ public class ComfirmOTPActivity extends AppCompatActivity {
     }
 
     private void setUpOnClick() {
+        //Check mã OTP
         binding.btnAcvite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

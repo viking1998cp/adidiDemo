@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
-
+/**
+ * Created by manh thắng 98.
+ */
 public class MainViewPager extends FragmentPagerAdapter {
     //Tạo mảng có kiểu Fragment
     private ArrayList<Fragment> arrayfragment = new ArrayList<>();
