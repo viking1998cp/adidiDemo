@@ -1,27 +1,26 @@
 package manhthang.adididemo.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.libraries.places.compat.AutocompleteFilter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import manhthang.adididemo.Adapter.ItemLocationAdapter;
 import manhthang.adididemo.Object.Location;
@@ -31,11 +30,12 @@ import manhthang.adididemo.databinding.ActivitySearchLocationBinding;
 /**
  * Created by manh thắng 98.
  */
-public class SearchLocationActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class SearchLocationActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener
+        , GoogleApiClient.ConnectionCallbacks {
 
     private ActivitySearchLocationBinding binding;
     private ArrayList<Location> locations;
-    private ItemLocationAdapter adapterLocation;
+    private ItemLocationAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,34 +46,35 @@ public class SearchLocationActivity extends AppCompatActivity implements GoogleA
         setUpListLocation();
     }
 
-    private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136));
+
     GoogleApiClient mGoogleApiClient;
     private void setUpListLocation() {
 
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .enableAutoManage(this, this)
-                .build();
+        LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
+                new LatLng(-40, -168), new LatLng(71, 136));
+
+        AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
+                                                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE)
+                                                .setCountry("VN")
+                                                .build();
+        buildGoogleAPiClient();
+        mGoogleApiClient.connect();
+
+        mAdapter = new ItemLocationAdapter(SearchLocationActivity.this,mGoogleApiClient,
+                LAT_LNG_BOUNDS, autocompleteFilter);
         binding.recycleResult.setHasFixedSize(true);
-        binding.recycleResult.setLayoutManager(new GridLayoutManager(binding.getRoot().getContext(), 1));
-        adapterLocation = new ItemLocationAdapter(locations);
-        binding.recycleResult.setAdapter(adapterLocation);
+        binding.recycleResult.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.recycleResult.setAdapter(mAdapter);
+        mAdapter.setOnItemClickedListener(new ItemLocationAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClick(int postion, View v) {
+
+            }
+        });
+
     }
 
-    private Handler m_handler = new Handler();
-    private Runnable m_runnable;
-
     private void setUpOnClick() {
-        m_runnable = new Runnable() {
-            @Override
-            public void run() {
-                searchLocation(binding.etSearch.getText().toString());
-                adapterLocation.notifyDataSetChanged();
-            }
-        };
 
         binding.etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -82,43 +83,52 @@ public class SearchLocationActivity extends AppCompatActivity implements GoogleA
                    || actionId == EditorInfo.IME_ACTION_SEARCH
                    || event.getAction() == KeyEvent.ACTION_DOWN
                    || event.getAction() == KeyEvent.KEYCODE_ENTER){
-                    searchLocation(binding.etSearch.getText().toString().trim());
+
+                    if(mGoogleApiClient.isConnected()){
+                        searchLocation(binding.etSearch.getText().toString().trim());
+                    }
 
                 }
                 return false;
             }
         });
+
     }
 
     private void searchLocation(String keySearch) {
-        Geocoder geocoder = new Geocoder(this);
-        List<Address> list = new ArrayList<>();
-        locations.clear();
-        try {
-            list = geocoder.getFromLocationName(keySearch, 5);
-        } catch (Exception e) {
-            Log.d("BBB", "searchLocation: " + e.getMessage());
-        }
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                Location location = new Location();
-                location.setLat(list.get(i).getLatitude());
-                location.setLogt(list.get(i).getLongitude());
-                location.setNameLocation(list.get(i).getCountryName());
-                location.setNameDetailLocation(list.get(i).getAddressLine(0));
-                locations.add(location);
-                Log.d("BBB", "searchLocation: "+ location.getNameDetailLocation());
-            }
-        }
-
-
-        adapterLocation.notifyDataSetChanged();
-
+        mAdapter.getFilter().filter(keySearch);
     }
 
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d("BBB", "onConnectionFailed: ");
+    }
+
+
+
+    @Override
+    public void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
 
     }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    protected synchronized void buildGoogleAPiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addOnConnectionFailedListener(this)
+                .addConnectionCallbacks(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
 }

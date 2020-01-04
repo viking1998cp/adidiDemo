@@ -32,6 +32,7 @@
                 android:lines="@integer/maxline1"
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
                 />
             <ImageView
                 android:layout_gravity="center"
